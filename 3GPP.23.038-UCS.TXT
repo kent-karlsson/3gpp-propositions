@@ -1,0 +1,127 @@
+# 3GPP.23.038-UCS.TXT
+# Date: 2025-07-04
+# © 2025 Unicode®, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+#
+#	Name:             3GPP 23.038 Unicode (UCS) to Unicode for SMS/CBS
+#	Unicode version:  16.0 and later
+#	Table version:    1.0
+#	Table format:     Format A
+#	Date:             2025 July 04
+#	Authors:          Kent Karlsson
+#
+#	General notes:
+#
+#	This mapping is based on 3GPP TS 23.038 V18.0.0 (2022-09), "3rd Generation
+#	Partnership Project; Technical Specification Group Core Network and
+#	Terminals; Alphabets and language-specific information (Release 18)".
+#
+#	This is a "Unicode to Unicode mapping", and most characters are not
+#	listed explicitly, but instead rely on @missing directive, mostly
+#	mapping to itself.
+#
+#	This table is intended for SMS and CBS only, do not use it for any
+#	other context. Note that there must be no "byte order mark" (ZWNBSP,
+#	0xFEFF), but the bytes are in "network byte order". Most C0/C1
+#	characters are unexpected in SMS/CBS, except for LF and CR (filler
+#	in SMS/CBS) so we map most of them to REPLACEMENT CHARACTER, LF or SP
+#	as appropriate, though CRs are normally to be removed.
+#
+#	The submessages that constitute a message can each have different
+#	character encodings. 1) Convert to UTF-16 (in processor endianness),
+#	2) remove filler CRs. Concatenate, or assembing into a list, in proper
+#	order, the submessages. Note that there is an order number, in TCP/IP,
+#	along with a total number, in the submessages so they (their text
+#	content) can be concatenated or assembled in proper order.
+#
+#	Note that CARRIAGE RETURN is used as terminator/filler when needed.
+#
+#	Format:  Three tab-separated columns
+#		 Column #1 is the Unicode scalar value as 0xXXXX or a
+#                  range 0xXXXX..0xXXXX.
+#		 Column #2 is the Unicode scalar value (in hex as 0xXXXX)
+#		 Column #3 the Unicode name (follows a comment sign, '#')
+#
+#	References:
+#
+#	Alpha - 3GPP TS 23.038 V18.0.0 [TO UPDATE],
+#			"Alphabets and language-specific information", 2022-09 [TO UPDATE].
+#
+#	SMS   - 3GPP TS 23.040 V18.0.0, 
+#			"Technical realization of the Short Message Service (SMS)", 2024-03.
+#
+#	CBS   - 3GPP TS 23.041 V18.6.0, 
+#			"Technical realization of Cell Broadcast Service (CBS)", 2024-09.
+#
+# @missing: 0x0000..0x10FFFF; <self> if supported
+# @missing: 0x0000..0x10FFFF; 0xFFFD if not supported for SMS/CBS (not allocated, is Cf, is deprecated or is otherwise not implemented (e.g. no glygh in the font used for SMS/CBS))
+#
+0x0000	0xFFFD	#	mapped to repl. char (note that this code is not terminator/filler in SMS/CBS, instead CR is used as filler)
+0x0001..0x0003	0x000A	#	SOH..ETX mapped to LF (these are ("special") paragraph separators)
+0x0004..0x0008	0xFFFD	#	EOT..BACKSPACE mapped to repl. char
+0x0009	0x0020	#	CHARACTER TABULATION mapped to (one) SP (HT should not be in SMS/CBS; note that this affects bidi results too)
+0x000B	0x000A	#	LINE TABULATION mapped to LF (VT is used as LS, but for SMS/CBS we map LS to LF)
+0x000D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
+0x000E..0x001B	0xFFFD	#	<control>..ESCAPE mapped to repl. char (that includes SUB (the original REPLACEMENT CHARACTER, but repl. char is more likely to be properly supported); also: there is no SUB in the 7-bit 3GPP encodings)
+0x001C..0x001F	0x000A	#	INFORMATION SEPARATOR FOUR..INFORMATION SEPARATOR ONE mapped to LF
+0x007F	0xFFFD	#	mapped to repl. char
+0x0080..0x0081	0x000A	#	mapped to LF
+0x0082	0x200B	#	BREAK PERMITTED HERE mapped to ZWSP (more likely supported in implementations)
+0x0083	0x2060	#	NO BREAK HERE mapped to WORD JOINER (more likely supported in implementations)
+0x0084..0x0085	0x000A	#	mapped to LF
+0x0086..0x0090	0xFFFD	#	mapped to repl. char; 0x0089 (HTJ) too
+0x0091..0x0093	0x000A	#	mapped to LF
+0x0094	0xFFFD	#	mapped to repl. char
+0x0095	0x000A	#	mapped to LF
+0x0096..0x009A	0xFFFD	#	mapped to repl. char
+0x009B	0x009B	#	CONTROL SEQUENCE INTRODUCER (for selected CSIxxxm styling; there should be no character references for UCS and SMS/CBS)
+0x009C..0x009F	0xFFFD	#	mapped to repl. char
+0x00A0	0xFFFD	#	NBSP (Zs) mapped to  repl. char
+
+0x1680	0xFFFD	#	OGHAM SPACE MARK (Zs) mapped to repl. char
+0x2000..0x200F	0xFFFD	#	Zs's, (mostly Arabic) join control, two bidi controls: mapped to repl. char (inappropriate for SMS/CBS)
+0x2028	0x000A	#	LINE SEPARATOR mapped to LF
+0x2029	0x000A	#	PARAGRAPH SEPARATOR mapped to LF
+0x202A..0x202E	0xFFFD	#	("stateful" bidi controls are inappropriate in SMS/CBS)
+0x202F	0xFFFD	#	NNBSP (Zs) mapped to repl. char
+0x205F	0xFFFD	#	MMSP (Zs) mapped to repl. char
+0x2061..0x2064	0xFFFD	#	(invisible operators are inappropriate in SMS/CBS) 
+0x2066..0x206F	0xFFFD	#	(bidi controls, misc. very deprecated Cfs; inappropriate in SMS/CBS)
+0xD800..0xDFFF	0xFFFD	#	(inappropriately used 'surrogate', these are always errors)
+0xE000..0xF8FF	0xFFFD	#	(private use characters are inappropriate in SMS/CBS)
+0xFDD0..0xFDEF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER; inappropriate in SMS/CBS
+0xFEFF	0x2060	#	map ZWNBSP to WJ; there must be no BOM in SMS/CBS (and hardly anywhere else); as actual ZWNBSP, WJ is the replacement in Unicode
+0xFFFC	0xFFFD	#	map OBJECT REPLACEMENT CHARACTER to REPLACEMENT CHARACTER
+0xFFFE..0xFFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+
+0x1FFFE..0x1FFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0x20000..0x2FFFD	0xFFFD	#	(rare CJK only (plus unassigned) and all are inappropriate in SMS/CBS)
+0x2FFFE..0x2FFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0x30000..0x3FFFD	0xFFFD	#	(all are unassigned (space reserved for rare CJK) and all are inappropriate in SMS/CBS)
+0x3FFFE..0x3FFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0x40000..0x4FFFD	0xFFFD	#	(all are unassigned and are inappropriate in SMS/CBS)
+0x4FFFE..0x4FFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0x50000..0x5FFFD	0xFFFD	#	(all are unassigned and are inappropriate in SMS/CBS)
+0x5FFFE..0x5FFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0x60000..0x6FFFD	0xFFFD	#	(all are unassigned and are inappropriate in SMS/CBS)
+0x6FFFE..0x6FFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0x70000..0x7FFFD	0xFFFD	#	(all are unassigned and are inappropriate in SMS/CBS)
+0x7FFFE..0x7FFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0x80000..0x8FFFD	0xFFFD	#	(all are unassigned and are inappropriate in SMS/CBS)
+0x8FFFE..0x8FFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0x90000..0x9FFFD	0xFFFD	#	(all are unassigned and are inappropriate in SMS/CBS)
+0x9FFFE..0x9FFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0xA0000..0xAFFFD	0xFFFD	#	(all are unassigned and are inappropriate in SMS/CBS)
+0xAFFFE..0xAFFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0xB0000..0xBFFFD	0xFFFD	#	(all are unassigned and are inappropriate in SMS/CBS)
+0xBFFFE..0xBFFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0xC0000..0xCFFFD	0xFFFD	#	(all are unassigned and are inappropriate in SMS/CBS)
+0xCFFFE..0xCFFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0xD0000..0xDFFFD	0xFFFD	#	(all are unassigned and are inappropriate in SMS/CBS)
+0xDFFFE..0xDFFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0xE0000..0xEFFFD	0xFFFD	#	("tag" and variation selectors (plus unassigned) all are inappropriate in SMS/CBS)
+0xEFFFE..0xEFFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0xF0000..0xFFFFD	0xFFFD	#	(private use characters are inappropriate in SMS/CBS)
+0xFFFFE..0xFFFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
+0x10000..0x10FFFD	0xFFFD	#	(private use characters are inappropriate in SMS/CBS)
+0x10FFFE..0x10FFFF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
