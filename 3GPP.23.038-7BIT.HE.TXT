@@ -1,13 +1,13 @@
 # 3GPP.23.038-7BIT.HE.TXT
-# Date: 2025-07-04
+# Date: 2025-12-21
 # © 2025 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
-#	Name:             3GPP 23.038 7-bit for Hebrew (0x12) to Unicode
-#	Unicode version:  16.0 and later
+#	Name:             3GPP 23.038 7-bit for Hebrew alphabet (0x12) to Unicode
+#	Unicode version:  17.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2025 July 04
+#	Date:             2025 December 21
 #	Authors:          Kent Karlsson
 #
 #	General notes:
@@ -17,24 +17,35 @@
 #	Terminals; Alphabets and language-specific information (Release 18)".
 #	Language code (Table 6.2.1.2.4.1) 0x12.
 #
-#	This 7-bit encoding (and mapping) should only be used in the context of
-#	SMS/CBS (including processing of such messages).
+#	This 7-bit encoding (and mapping) should only be used in the context
+#	of SMS/CBS (including processing of such messages).
 #
-#	Note also that for all of the SMS/CBS/USSD encodings 0x00(00) is 
-#	NOT used as string terminator or filler but 0x00 often encodes a
-#	character. Instead CARRIAGE RETURN is used as terminator/filler
-#	when needed (the SMS protocol also has a "payload" length field).
+#	An SS2 character (0x1B) that is not part of a mapped SS2 sequence
+#	should be mapped to REPLACEMENT CHARACTER, to indicate the encoding
+#	error. See the @missing declarations below. (3GPP 03.038 specifies
+#	mapping SS2 alone to SPACE, but that is not generally helpful.)
+#
+#	0x0D is CR which is used as filler after the actual message text,
+#	and in case of 2-letter (always in original default 7-bit encoding)
+#	language code prefix (a language tagging method available only for
+#	the CBS protocol), also between the language code and actual message.
+#	These CR characters are to be inserted (when converting to an
+#	SMS/CBS encoding, also the UTF-16BE encoding as used for SMS/CBS)
+#	or removed (when converting from an SMS/CBS encoding). A CR 
+#	occurring strictly INSIDE of a message (should not happen...)
+#	should be converted to LF. This handling of CR is not reflected
+#	in the table below, which just maps CR to CR.
+#
+#	Note that 0x00 is the code for COMMERCIAL AT. It is never used as
+#	filler or terminator.
 #
 #	The characters here are mostly Hebrew letters (+ "Latin" letters
 #	and digits), thus for displaying messages in this encoding one
-#	must apply the bidi algorithm. For the bidi algorithm, *without*
-#	any bidi controls, the "paragraph level" parameter is always "LTR"
-#	for SMS/CBS messages. The bidi  algoritnm is applied *after*
-#	submessage concatenation (so a message can be split mid-sentence
-#	without affecting display order). Note that automatic line breaking
-#	can insert LINE SEPARATOR CHARACTERS during the bidi process. There
-#	is no HT in the coding below and cannot be introduced by the extension
-#	mechanism.
+#	must apply the bidi algorithm. The "paragraph level" parameter is
+#	always "LTR" for SMS/CBS messages. The bidi algoritnm is applied
+#	*after* submessage concatenation. LRM and RLM can be used to "fix"
+#	bidi ordering issues for 'bidi neutral' symbols, like quote marks,
+#	comma, full stop, ... in case of 'order change' around the symbol.
 #
 #	Format:  Three tab-separated columns
 #		 Column #1 is the 3GPP TS 23.038 7-bit Hebrew alphabet (0x12) code
@@ -65,28 +76,29 @@
 0x01	0x00A3	#	POUND SIGN
 0x02	0x0024	#	DOLLAR SIGN
 0x03	0x00A5	#	YEN SIGN
-0x04	0x20AA	#	NEW SHEQEL SIGN
-0x06	0x05B0	#	HEBREW POINT SHEVA
-0x07	0x05B1	#	HEBREW POINT HATAF SEGOL
-0x08	0x05B2	#	HEBREW POINT HATAF PATAH
-0x09	0x05B3	#	HEBREW POINT HATAF QAMATS
+0x04	0x00A7	#	SECTION SIGN
+0x05	0x20AA	#	NEW SHEQEL SIGN
+0x06	0x05BD	#	HEBREW POINT METEG
+0x07	0x05B0	#	HEBREW POINT SHEVA (e or schwa)
+0x08	0x05B5	#	HEBREW POINT TSERE (ay)
+0x09	0x05BB	#	HEBREW POINT QUBUTS (uu)
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
-0x0B	0x05B4	#	HEBREW POINT HIRIQ
-0x0C	0x05B5	#	HEBREW POINT TSERE
+0x0B	0x05B6	#	HEBREW POINT SEGOL (eh)
+0x0C	0x05B1	#	HEBREW POINT HATAF SEGOL
 0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
-0x0E	0x05B6	#	HEBREW POINT SEGOL
-0x0F	0x05B7	#	HEBREW POINT PATAH
+0x0E	0x05B2	#	HEBREW POINT HATAF PATAH
+0x0F	0x05B3	#	HEBREW POINT HATAF QAMATS
 0x10	0x2212	#	MINUS SIGN
 0x11	0x005F	#	LOW LINE
-0x12	0x05B8	#	HEBREW POINT QAMATS
-0x13	0x05B9	#	HEBREW POINT HOLAM
+0x12	0x05B4	#	HEBREW POINT HIRIQ (ee)
+0x13	0x05B9	#	HEBREW POINT HOLAM (o)
 0x14	0x05BA	#	HEBREW POINT HOLAM HASER FOR VAV
-0x15	0x05BB	#	HEBREW POINT QUBUTS
-0x16	0x05BC	#	HEBREW POINT DAGESH OR MAPIQ
-0x17	0x05BD	#	HEBREW POINT METEG
-0x18	0x05BF	#	HEBREW POINT RAFE
-0x19	0x05C1	#	HEBREW POINT SHIN DOT
-0x1A	0x05C2	#	HEBREW POINT SIN DOT
+0x15	0x05BC	#	HEBREW POINT DAGESH OR MAPIQ
+0x16	0x05C1	#	HEBREW POINT SHIN DOT
+0x17	0x05C2	#	HEBREW POINT SIN DOT
+0x18	0x05B7	#	HEBREW POINT PATAH (ah)
+0x19	0x05BF	#	HEBREW POINT RAFE ('softener', e.g. 'b' -> 'v', ...)
+0x1A	0xFB1E	#	HEBREW POINT JUDEO-SPANISH VARIKA ('softener', e.g. 'b' -> 'v', ...)
 #0x1B	SINGLE SHIFT TWO (no mapping by itself, see also @missing above)
 0x1B00	0xFB21	#	HEBREW LETTER WIDE ALEF
 0x1B01	0xFB22	#	HEBREW LETTER WIDE DALET
@@ -96,14 +108,11 @@
 0x1B05	0xFB26	#	HEBREW LETTER WIDE FINAL MEM
 0x1B06	0xFB27	#	HEBREW LETTER WIDE RESH
 0x1B07	0xFB28	#	HEBREW LETTER WIDE TAV
-0x1B08	0x05F0	#	HEBREW LIGATURE YIDDISH DOUBLE VAV
-0x1B09	0x05F1	#	HEBREW LIGATURE YIDDISH VAV YOD
+0x1B08	0xFB4F	#	HEBREW LIGATURE ALEF LAMED
+
 0x1B0A	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
-0x1B0B	0x05F2	#	HEBREW LIGATURE YIDDISH DOUBLE YOD
-0x1B0C	0x05EF	#	HEBREW YOD TRIANGLE
 0x1B0D	0x009B	#	CONTROL SEQUENCE INTRODUCER (enable CSInnn_ decimal character references and selected CSIxxxm styling)
-0x1B0E	0xFB1D	#	HEBREW LETTER YOD WITH HIRIQ
-0x1B0F	0xFB1F	#	HEBREW LIGATURE YIDDISH YOD YOD PATAH
+0x1B0E	0x05EF	#	HEBREW YOD TRIANGLE
 0x1B10	0xFB2A	#	HEBREW LETTER SHIN WITH SHIN DOT
 0x1B11	0xFB2B	#	HEBREW LETTER SHIN WITH SIN DOT
 0x1B12	0xFB2C	#	HEBREW LETTER SHIN WITH DAGESH AND SHIN DOT
@@ -116,7 +125,9 @@
 0x1B19	0xFB32	#	HEBREW LETTER GIMEL WITH DAGESH
 0x1B1A	0xFB33	#	HEBREW LETTER DALET WITH DAGESH
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1C	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
+0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0xFB34	#	HEBREW LETTER HE WITH MAPIQ
 0x1B1D	0xFB35	#	HEBREW LETTER VAV WITH DAGESH
 0x1B1E	0xFB36	#	HEBREW LETTER ZAYIN WITH DAGESH
@@ -178,12 +189,15 @@
 0x1B58	0x0058	#	LATIN CAPITAL LETTER X
 0x1B59	0x0059	#	LATIN CAPITAL LETTER Y
 0x1B5A	0x005A	#	LATIN CAPITAL LETTER Z
+0x1B5D	0x05C3	#	HEBREW PUNCTUATION SOF PASUQ (full stop-like (looks like :)) [rare]
+0x1B5E	0x05C0	#	HEBREW PUNCTUATION PASEQ (use is comma-like (looks like vertical bar and final nun)) [rare]
+0x1B5F	0x05C6	#	HEBREW PUNCTUATION NUN HAFUKHA (looks like a reversed nun) [rare]
 0x1B60	0x00BC	#	VULGAR FRACTION ONE QUARTER
 0x1B61	0x00BD	#	VULGAR FRACTION ONE HALF
 0x1B62	0x00BE	#	VULGAR FRACTION THREE QUARTERS
 0x1B63	0x201C	#	LEFT DOUBLE QUOTATION MARK
 0x1B64	0x201D	#	RIGHT DOUBLE QUOTATION MARK
-0x1B65	0x20AC	#	EURO SIGN
+0x1B65	0x00A4	#	CURRENCY SIGN
 0x1B66	0x03A9	#	GREEK CAPITAL LETTER OMEGA (ohm sign)
 0x1B67	0x03BC	#	GREEK SMALL LETTER MU (micro sign)
 0x1B68	0x00B0	#	DEGREE SIGN
@@ -194,21 +208,19 @@
 0x1B6D	0x00AB	#	LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
 0x1B6E	0x00BB	#	RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
 0x1B6F	0x2019	#	RIGHT SINGLE QUOTATION MARK 
-#0x1B70	0x2248	#	ALMOST EQUAL TO
 0x1B70	0x26A0	#	WARNING SIGN (can be rendered in emoji style)
 0x1B71	0x221E	#	INFINITY
-0x1B72	0x00B2	#	SUPERSCRIPT TWO		(also CSI56:1m2CSI56m)
+0x1B72	0x00B2	#	SUPERSCRIPT TWO	(also CSI56:1m2CSI56m)
 0x1B73	0x00B3	#	SUPERSCRIPT THREE	(also CSI56:1m3CSI56m)
-0x1B77	0xFB4F	#	HEBREW LIGATURE ALEF LAMED
-0x1C	0x05C7	#	HEBREW POINT QAMATS QATAN
-0x1D	0xFB1E	#	HEBREW POINT JUDEO-SPANISH VARIKA
-0x1E	0x05C0	#	HEBREW PUNCTUATION PASEQ (Comma-like (looks like vertical bar))
-0x1F	0x05C3	#	HEBREW PUNCTUATION SOF PASUQ (Full stop-like (looks like :))
+0x1C	0x05B8	#	HEBREW POINT QAMATS (aah)
+0x1D	0x05C7	#	HEBREW POINT QAMATS QATAN
+0x1E	0x05F3	#	HEBREW PUNCTUATION GERESH
+0x1F	0x05F4	#	HEBREW PUNCTUATION GERSHAYIM
 0x20	0x0020	#	SPACE
 0x21	0x0021	#	EXCLAMATION MARK
 0x22	0x0022	#	QUOTATION MARK
 0x23	0x0023	#	NUMBER SIGN
-0x24	0x00A4	#	CURRENCY SIGN
+0x24	0x20AC	#	EURO SIGN
 0x25	0x0025	#	PERCENT SIGN
 0x26	0x0026	#	AMPERSAND
 0x27	0x0027	#	APOSTROPHE
@@ -236,7 +248,7 @@
 0x3D	0x003D	#	EQUALS SIGN
 0x3E	0x003E	#	GREATER-THAN SIGN
 0x3F	0x003F	#	QUESTION MARK
-0x40	0x05BE	#	HEBREW PUNCTUATION MAQAF (Hebrew hyphen)
+#0x40
 0x41	0x05D0	#	HEBREW LETTER ALEF
 0x42	0x05D1	#	HEBREW LETTER BET
 0x43	0x05D2	#	HEBREW LETTER GIMEL
@@ -256,7 +268,7 @@
 0x51	0x05E0	#	HEBREW LETTER NUN
 0x52	0x05E1	#	HEBREW LETTER SAMEKH
 0x53	0x05E2	#	HEBREW LETTER AYIN
-0x54	0xFB20	#	HEBREW LETTER ALTERNATIVE AYIN <font> 05E2
+0x54	0xFB20	#	HEBREW LETTER ALTERNATIVE AYIN
 0x55	0x05E3	#	HEBREW LETTER FINAL PE
 0x56	0x05E4	#	HEBREW LETTER PE
 0x57	0x05E5	#	HEBREW LETTER FINAL TSADI
@@ -265,9 +277,9 @@
 0x5A	0x05E8	#	HEBREW LETTER RESH
 0x5B	0x05E9	#	HEBREW LETTER SHIN
 0x5C	0x05EA	#	HEBREW LETTER TAV
-0x5D	0x05F3	#	HEBREW PUNCTUATION GERESH
-0x5E	0x05F4	#	HEBREW PUNCTUATION GERSHAYIM
-0x5F	0x00A7	#	SECTION SIGN
+0x5D	0x05F0	#	HEBREW LIGATURE YIDDISH DOUBLE VAV
+0x5E	0x05F1	#	HEBREW LIGATURE YIDDISH VAV YOD
+0x5F	0x05F2	#	HEBREW LIGATURE YIDDISH DOUBLE YOD
 0x61	0x0061	#	LATIN SMALL LETTER A
 0x62	0x0062	#	LATIN SMALL LETTER B
 0x63	0x0063	#	LATIN SMALL LETTER C
@@ -294,3 +306,16 @@
 0x78	0x0078	#	LATIN SMALL LETTER X
 0x79	0x0079	#	LATIN SMALL LETTER Y
 0x7A	0x007A	#	LATIN SMALL LETTER Z
+
+0x7B	0xFB1D	#	HEBREW LETTER YOD WITH HIRIQ
+0x7C	0xFB1F	#	HEBREW LIGATURE YIDDISH YOD YOD PATAH
+
+0x7D	0x05BE	#	HEBREW PUNCTUATION MAQAF (Hebrew hyphen, looks like hyphen... though higher up)
+### While zero-width, these should have visible glyphs; like a narrow bar with a ‘flag’ indicating direction.
+0x7E	0x200E	#	LEFT-TO-RIGHT MARK	(in particular for: to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no RTL char in the line)
+0x7F	0x200F	#	RIGHT-TO-LEFT MARK	(in particular for: to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no RTL char in the line)
+### Bidi AL to be handled as bidi R, except arabic punctuation which is to be handled as ON; 
+### all bidi EN and AN to be handled as L; all ET, ES, CS to be handled as ON for SMS/CBS.
+### 'Paragraph direction' is always LTR for SMS/CBS. There are no nestable bidi controls in SMS/CBS.
+### Bidi mirroring applies; however, bidi mirroring does not apply to arrows, even though arrows most often
+### refer to the adjacent text components, and not external directions; it is up to the author to mirror arrows.

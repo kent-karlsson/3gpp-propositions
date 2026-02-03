@@ -1,13 +1,13 @@
 # 3GPP.23.038-7BIT.GU.TXT
-# Date: 2025-07-04
+# Date: 2025-12-21
 # © 2025 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
-#	Name:             3GPP 23.038 7-bit for Gujarati (0x15) to Unicode
-#	Unicode version:  16.0 and later
+#	Name:             3GPP 23.038 7-bit for Gujarati alphabet (0x15) to Unicode
+#	Unicode version:  17.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2025 July 04
+#	Date:             2025 December 21
 #	Authors:          Kent Karlsson
 #
 #	General notes:
@@ -20,10 +20,24 @@
 #	This 7-bit encoding (and mapping) should only be used in the context of
 #	SMS/CBS (including processing of such messages).
 #
-#	Note also that for all of the SMS/CBS/USSD encodings 0x00(00) is 
-#	NOT used as string terminator or filler but 0x00 often encodes a
-#	character. Instead CARRIAGE RETURN is used as terminator/filler
-#	when needed (the SMS protocol also has a "payload" length field).
+#	An SS2 character (0x1B) that is not part of a mapped SS2 sequence
+#	should be mapped to REPLACEMENT CHARACTER, to indicate the encoding
+#	error. See the @missing declarations below. (3GPP 03.038 specifies
+#	mapping SS2 alone to SPACE, but that is not generally helpful.)
+#
+#	0x0D is CR which is used as filler after the actual message text,
+#	and in case of 2-letter (always in original default 7-bit encoding)
+#	language code prefix (a language tagging method available only for
+#	the CBS protocol), also between the language code and actual message.
+#	These CR characters are to be inserted (when converting to an
+#	SMS/CBS encoding, also the UTF-16BE encoding as used for SMS/CBS)
+#	or removed (when converting from an SMS/CBS encoding). A CR 
+#	occurring strictly INSIDE of a message (should not happen...)
+#	should be converted to LF. This handling of CR is not reflected
+#	in the table below, which just maps CR to CR.
+#
+#	Note that 0x00 is the code for GUJARATI SIGN CANDRABINDU. It is never used as
+#	filler or terminator.
 #
 #	As for all Indic scripts, script specific "shaping" (in particular
 #	VIRAMA between consonant letters as well as combining characters)
@@ -86,13 +100,13 @@
 0x1B03	0x00A5	#	YEN SIGN
 0x1B04	0x00A7	#	SECTION SIGN
 0x1B05	0x0022	#	QUOTATION MARK
-0x1B06	0x00A4	#	CURRENCY SIGN
+0x1B06	0x20AC	#	EURO SIGN
 0x1B07	0x0025	#	PERCENT SIGN
 0x1B08	0x0026	#	AMPERSAND
 0x1B09	0x0027	#	APOSTROPHE
 0x1B0A	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
 0x1B0B	0x2212	#	MINUS SIGN
-0x1B0C	0x002B	#	PLUS SIGN
+0x1B0C	0x0021	#	EXCLAMATION MARK
 0x1B0D	0x009B	#	CONTROL SEQUENCE INTRODUCER (enable CSInnn_ decimal character references and selected CSIxxxm styling)
 0x1B0E	0x002D	#	HYPHEN-MINUS
 0x1B10	0x003C	#	LESS-THAN SIGN
@@ -101,12 +115,14 @@
 0x1B13	0x20B9	#	INDIAN RUPEE SIGN
 0x1B14	0x005E	#	CIRCUMFLEX ACCENT
 0x1B15	0x0AF1	#	GUJARATI RUPEE SIGN
-0x1B17	0x0023	#	NUMBER SIGN
-0x1B18	0x002A	#	ASTERISK
+0x1B17	0x0028	#	LEFT PARENTHESIS
+0x1B18	0x0029	#	RIGHT PARENTHESIS
 0x1B19	0x0964	#	DEVANAGARI DANDA
 0x1B1A	0x0965	#	DEVANAGARI DOUBLE DANDA
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1C	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
+0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0x0AE6	#	GUJARATI DIGIT ZERO
 0x1B1D	0x0AE7	#	GUJARATI DIGIT ONE
 0x1B1E	0x0AE8	#	GUJARATI DIGIT TWO
@@ -129,15 +145,6 @@
 0x1B31	0x0AE1	#	GUJARATI LETTER VOCALIC LL
 0x1B32	0x0AC4	#	GUJARATI VOWEL SIGN VOCALIC RR
 0x1B33	0x0AE3	#	GUJARATI VOWEL SIGN VOCALIC LL
-
-# maybe exclude:
-0x1B34	0x0AFD	#	GUJARATI SIGN THREE-DOT NUKTA ABOVE
-0x1B35	0x0AFE	#	GUJARATI SIGN CIRCLE NUKTA ABOVE
-0x1B36	0x0AFF	#	GUJARATI SIGN TWO-CIRCLE NUKTA ABOVE
-0x1B37	0x0AFA	#	GUJARATI SIGN SUKUN
-0x1B38	0x0AFB	#	GUJARATI SIGN SHADDA
-0x1B39	0x0AFC	#	GUJARATI SIGN MADDAH
-
 0x1B3A	0x2248	#	ALMOST EQUAL TO
 0x1B3B	0x2260	#	NOT EQUAL TO
 0x1B3C	0x005B	#	LEFT SQUARE BRACKET
@@ -176,7 +183,7 @@
 0x1B62	0x00BE	#	VULGAR FRACTION THREE QUARTERS
 0x1B63	0x201C	#	LEFT DOUBLE QUOTATION MARK
 0x1B64	0x201D	#	RIGHT DOUBLE QUOTATION MARK
-0x1B65	0x20AC	#	EURO SIGN
+0x1B65	0x00A4	#	CURRENCY SIGN
 0x1B66	0x03A9	#	GREEK CAPITAL LETTER OMEGA (ohm sign)
 0x1B67	0x03BC	#	GREEK SMALL LETTER MU (micro sign)
 0x1B68	0x00B0	#	DEGREE SIGN
@@ -189,29 +196,33 @@
 0x1B6F	0x2019	#	RIGHT SINGLE QUOTATION MARK 
 0x1B70	0x26A0	#	WARNING SIGN (can be rendered in emoji style)
 0x1B71	0x221E	#	INFINITY
-0x1B72	0x00B2	#	SUPERSCRIPT TWO		(also CSI56:1m2CSI56m)
+0x1B72	0x00B2	#	SUPERSCRIPT TWO	(also CSI56:1m2CSI56m)
 0x1B73	0x00B3	#	SUPERSCRIPT THREE	(also CSI56:1m3CSI56m)
-
+0x1B74	0x0ABD	#	GUJARATI SIGN AVAGRAHA
 0x1B76	0x0A91	#	GUJARATI VOWEL CANDRA O
-
-0x1B7C	0x0AF9	#	GUJARATI LETTER ZHA
-
+0x1B77	0x0AF9	#	GUJARATI LETTER ZHA
+0x1B79	0x0AFD	#	GUJARATI SIGN THREE-DOT NUKTA ABOVE
+0x1B7A	0x0AFE	#	GUJARATI SIGN CIRCLE NUKTA ABOVE
+0x1B7B	0x0AFF	#	GUJARATI SIGN TWO-CIRCLE NUKTA ABOVE
+0x1B7D	0x0AFB	#	GUJARATI SIGN SHADDA
+0x1B7E	0x0AFC	#	GUJARATI SIGN MADDAH
+0x1B7F	0x0AFA	#	GUJARATI SIGN SUKUN
 0x1C	0x0A9B	#	GUJARATI LETTER CHA
 0x1D	0x0A9C	#	GUJARATI LETTER JA
 0x1E	0x0A9D	#	GUJARATI LETTER JHA
 0x1F	0x0A9E	#	GUJARATI LETTER NYA
 0x20	0x0020	#	SPACE
-0x21	0x0021	#	EXCLAMATION MARK
-0x22	0x0AA4	#	GUJARATI LETTER TA
-0x23	0x0A9F	#	GUJARATI LETTER TTA
+0x21	0x0AA4	#	GUJARATI LETTER TA
+0x22	0x0A9F	#	GUJARATI LETTER TTA
+0x23	0x0023	#	NUMBER SIGN
 0x24	0x0AA5	#	GUJARATI LETTER THA
 0x25	0x0AA0	#	GUJARATI LETTER TTHA
 0x26	0x0AA6	#	GUJARATI LETTER DA
 0x27	0x0AA1	#	GUJARATI LETTER DDA
-0x28	0x0028	#	LEFT PARENTHESIS
-0x29	0x0029	#	RIGHT PARENTHESIS
-0x2A	0x0AA7	#	GUJARATI LETTER DHA
-0x2B	0x0AA2	#	GUJARATI LETTER DDHA
+0x28	0x0AA7	#	GUJARATI LETTER DHA
+0x29	0x0AA2	#	GUJARATI LETTER DDHA
+0x2A	0x002A	#	ASTERISK
+0x2B	0x002B	#	PLUS SIGN
 0x2C	0x002C	#	COMMA
 0x2D	0x0AA8	#	GUJARATI LETTER NA
 0x2E	0x002E	#	FULL STOP
@@ -253,12 +264,9 @@
 0x55	0x0AC3	#	GUJARATI VOWEL SIGN VOCALIC R
 0x56	0x0AE2	#	GUJARATI VOWEL SIGN VOCALIC L
 0x57	0x0AC5	#	GUJARATI VOWEL SIGN CANDRA E
-#0x57 (candra e; a)
 0x58	0x0AC7	#	GUJARATI VOWEL SIGN E (short e)
-
 0x5A	0x0AC8	#	GUJARATI VOWEL SIGN AI
 0x5B	0x0AC9	#	GUJARATI VOWEL SIGN CANDRA O å
-
 0x5D	0x0ACB	#	GUJARATI VOWEL SIGN O (oo)
 0x5E	0x0ACC	#	GUJARATI VOWEL SIGN AU
 0x5F	0x0ACD	#	GUJARATI SIGN VIRAMA
@@ -290,4 +298,3 @@
 0x79	0x0079	#	LATIN SMALL LETTER Y
 0x7A	0x007A	#	LATIN SMALL LETTER Z
 0x7E	0x0AF0	#	GUJARATI ABBREVIATION SIGN
-0x7F	0x0ABD	#	GUJARATI SIGN AVAGRAHA

@@ -1,13 +1,13 @@
 # 3GPP.23.038-7BIT.KM.TXT
-# Date: 2025-07-04
+# Date: 2025-12-21
 # © 2025 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
-#	Name:             3GPP 23.038 7-bit for Khmer (0x1F) to Unicode
-#	Unicode version:  16.0 and later
+#	Name:             3GPP 23.038 7-bit for Khmer alphabet (0x1F) to Unicode
+#	Unicode version:  17.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2025 July 04
+#	Date:             2025 December 21
 #	Authors:          Kent Karlsson
 #
 #	General notes:
@@ -20,10 +20,24 @@
 #	This 7-bit encoding (and mapping) should only be used in the context of
 #	SMS/CBS (including processing of such messages).
 #
-#	Note also that for all of the SMS/CBS/USSD encodings 0x00(00) is 
-#	NOT used as string terminator or filler but 0x00 often encodes a
-#	character. Instead CARRIAGE RETURN is used as terminator/filler
-#	when needed (the SMS protocol also has a "payload" length field).
+#	An SS2 character (0x1B) that is not part of a mapped SS2 sequence
+#	should be mapped to REPLACEMENT CHARACTER, to indicate the encoding
+#	error. See the @missing declarations below. (3GPP 03.038 specifies
+#	mapping SS2 alone to SPACE, but that is not generally helpful.)
+#
+#	0x0D is CR which is used as filler after the actual message text,
+#	and in case of 2-letter (always in original default 7-bit encoding)
+#	language code prefix (a language tagging method available only for
+#	the CBS protocol), also between the language code and actual message.
+#	These CR characters are to be inserted (when converting to an
+#	SMS/CBS encoding, also the UTF-16BE encoding as used for SMS/CBS)
+#	or removed (when converting from an SMS/CBS encoding). A CR 
+#	occurring strictly INSIDE of a message (should not happen...)
+#	should be converted to LF. This handling of CR is not reflected
+#	in the table below, which just maps CR to CR.
+#
+#	Note that 0x00 is the code for KHMER SIGN YUUKALEAPINTU. It is never used as
+#	filler or terminator.
 #
 #	As for all Indic scripts, script specific "shaping"
 #	need to be done for proper display.
@@ -56,9 +70,8 @@
 0x00	0x17C8	#	KHMER SIGN YUUKALEAPINTU (VOWEL SIGN) (yukaleakpintu) * inserts a short inherent vowel with abrupt glottal stop
 0x01	0x17C6	#	KHMER SIGN NIKAHIT (VOWEL SIGN) * final nasalization (anusvara) * this character is usually regarded as a vowel sign am, along with om and aam
 0x02	0x17C7	#	KHMER SIGN REAHMUK visarga (VOWEL SIGN)
-
-0x03	0x17A2	#	KHMER LETTER QA * (glottal stop, na), actually more like the "a" independent vowel; 0x17A3 should be a canonical equivalent, but instead is "strongly discouraged"
-#0x04	0x17A4	for (independent) "aa", use 0x17A2,0x17B6 instead of 17A4, which should have had a canonical decomposition, but instead is "strongly discouraged"
+0x03	0x17A2	#	KHMER LETTER QA * (glottal stop, na), actually more like the "a" independent vowel; U+17A3 should be a canonical equivalent, but instead is "strongly discouraged"
+0x04	0x17A4	#	KHMER INDEPENDENT VOWEL QAA   prefer to use <17A2,17B6>, which should have been a canonical decomposition
 0x05	0x17A5	#	KHMER INDEPENDENT VOWEL QI (i)
 0x06	0x17A6	#	KHMER INDEPENDENT VOWEL QII (ii) (aa) (ey)
 0x07	0x17A7	#	KHMER INDEPENDENT VOWEL QU (u)
@@ -66,13 +79,10 @@
 0x09	0x17AB	#	KHMER INDEPENDENT VOWEL RY (vocalic r)
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
 0x0B	0x17AD	#	KHMER INDEPENDENT VOWEL LY (vocalic l)
-#0x0C (candra e)
 0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
 0x0E	0x17AF	#	KHMER INDEPENDENT VOWEL QE (e)
-#0x0F (ee)
 0x10	0x17B0	#	KHMER INDEPENDENT VOWEL QAI (ai)
 0x11	0x005F	#	LOW LINE
-#0x12 (o)
 0x13	0x17B1	#	KHMER INDEPENDENT VOWEL QOO TYPE ONE (oo)
 0x14	0x17B3	#	KHMER INDEPENDENT VOWEL QAU (au)
 0x15	0x1780	#	KHMER LETTER KA
@@ -88,13 +98,13 @@
 0x1B03	0x00A5	#	YEN SIGN
 0x1B04	0x00A7	#	SECTION SIGN
 0x1B05	0x0022	#	QUOTATION MARK
-0x1B06	0x00A4	#	CURRENCY SIGN
+0x1B06	0x20AC	#	EURO SIGN
 0x1B07	0x0025	#	PERCENT SIGN
 0x1B08	0x0026	#	AMPERSAND
 0x1B09	0x0027	#	APOSTROPHE
 0x1B0A	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
 0x1B0B	0x2212	#	MINUS SIGN
-0x1B0C	0x002B	#	PLUS SIGN
+0x1B0C	0x0021	#	EXCLAMATION MARK
 0x1B0D	0x009B	#	CONTROL SEQUENCE INTRODUCER (enable CSInnn_ decimal character references and selected CSIxxxm styling)
 0x1B0E	0x002D	#	HYPHEN-MINUS
 0x1B10	0x003C	#	LESS-THAN SIGN
@@ -104,12 +114,14 @@
 0x1B14	0x005E	#	CIRCUMFLEX ACCENT
 0x1B15	0x0E3F	#	THAI CURRENCY SYMBOL BAHT
 0x1B16	0x20AD	#	KIP SIGN
-0x1B17	0x0023	#	NUMBER SIGN
-0x1B18	0x002A	#	ASTERISK
+0x1B17	0x0028	#	LEFT PARENTHESIS
+0x1B18	0x0029	#	RIGHT PARENTHESIS
 0x1B19	0x17D4	#	KHMER SIGN KHAN (danda)
 0x1B1A	0x17D5	#	KHMER SIGN BARIYOOSAN (double danda)
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1C	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
+0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0x17E0	#	KHMER DIGIT ZERO
 0x1B1D	0x17E1	#	KHMER DIGIT ONE
 0x1B1E	0x17E2	#	KHMER DIGIT TWO
@@ -130,12 +142,12 @@
 0x1B2D	0x2A7D	#	LESS-THAN OR SLANTED EQUAL TO
 0x1B2E	0x2A7E	#	GREATER-THAN OR SLANTED EQUAL TO
 0x1B2F	0x005C	#	REVERSE SOLIDUS
-0x1B30	0x17A8	#	KHMER INDEPENDENT VOWEL QUK (ok)
+0x1B30	0x17A8	#	KHMER INDEPENDENT VOWEL QUK (ok) * obsolete ligature for the sequence 17A7,1780; use of the sequence is now preferred
 0x1B31	0x17AA	#	KHMER INDEPENDENT VOWEL QUUV (yu)
 0x1B32	0x17AC	#	KHMER INDEPENDENT VOWEL RYY (vocalic rr)
 0x1B33	0x17AE	#	KHMER INDEPENDENT VOWEL LYY (vocalic ll)
 0x1B34	0x17B2	#	KHMER INDEPENDENT VOWEL QOO TYPE TWO (äu)
-#0x1B35	0x17DE	#	unallocated code point; right side of (17BF) and 17C0 (candra e...)
+#0x1B35	0x17DE	#	unallocated code point; AI LENGTH MARK (candra e)
 0x1B36	0x17BF	#	KHMER VOWEL SIGN YA   17C1+17BA+[17DE] (may consider 17BA+[17DE] as a variant of 17BA when occurring after 17C1)
 0x1B37	0x17C0	#	KHMER VOWEL SIGN IE   17C1+[17DE]  with AI LENGTH MARK (candra e)
 0x1B38	0x17BE	#	KHMER VOWEL SIGN OE   17C1+17B8
@@ -173,17 +185,14 @@
 0x1B58	0x0058	#	LATIN CAPITAL LETTER X
 0x1B59	0x0059	#	LATIN CAPITAL LETTER Y
 0x1B5A	0x005A	#	LATIN CAPITAL LETTER Z
-0x1B5B	0x17CC	#	KHMER SIGN ROBAT (MAI )
-0x1B5C	0x17CE	#	KHMER SIGN KAKABAT (MAI )
-0x1B5D	0x17CF	#	KHMER SIGN AHSDA (MAI )
-0x1B5E	0x17DD	#	KHMER SIGN ATTHACAN (MAI )
-0x1B5F	0x17DC	#	KHMER SIGN AVAKRAHASANYA avakraha sannya  * rare, shows an omitted Sanskrit vowel, like an apostrophe
+0x1B5B	0x17CD	#	KHMER SIGN TOANDAKHIAT (CANCELLATION MARK)
+0x1B5F	0x17D1	#	KHMER SIGN VIRIAM (VIRAMA)
 0x1B60	0x00BC	#	VULGAR FRACTION ONE QUARTER
 0x1B61	0x00BD	#	VULGAR FRACTION ONE HALF
 0x1B62	0x00BE	#	VULGAR FRACTION THREE QUARTERS
 0x1B63	0x201C	#	LEFT DOUBLE QUOTATION MARK
 0x1B64	0x201D	#	RIGHT DOUBLE QUOTATION MARK
-0x1B65	0x20AC	#	EURO SIGN
+0x1B65	0x00A4	#	CURRENCY SIGN
 0x1B66	0x03A9	#	GREEK CAPITAL LETTER OMEGA (ohm sign)
 0x1B67	0x03BC	#	GREEK SMALL LETTER MU (micro sign)
 0x1B68	0x00B0	#	DEGREE SIGN
@@ -196,26 +205,26 @@
 0x1B6F	0x2019	#	RIGHT SINGLE QUOTATION MARK
 0x1B70	0x26A0	#	WARNING SIGN (can be rendered in emoji style)
 0x1B71	0x221E	#	INFINITY
-0x1B72	0x00B2	#	SUPERSCRIPT TWO		(also CSI56:1m2CSI56m)
+0x1B72	0x00B2	#	SUPERSCRIPT TWO	(also CSI56:1m2CSI56m)
 0x1B73	0x00B3	#	SUPERSCRIPT THREE	(also CSI56:1m3CSI56m)
-0x1B74	0x17D1	#	KHMER SIGN VIRIAM (VIRAMA?)
+0x1B74	0x17DC	#	KHMER SIGN AVAKRAHASANYA avakraha sannya
 0x1B75	0x17DB	#	KHMER CURRENCY SYMBOL RIEL
-0x1B7F	0x17D6	#	KHMER SIGN CAMNUC PII KUUH * functions as colon
+0x1B76	0x17A3	#	KHMER INDEPENDENT VOWEL QAQ	* use of this character is strongly discouraged; 17A2 should be used instead
 0x1C	0x1786	#	KHMER LETTER CHA
 0x1D	0x1787	#	KHMER LETTER CO
 0x1E	0x1788	#	KHMER LETTER CHO
 0x1F	0x1789	#	KHMER LETTER NYO
 0x20	0x0020	#	SPACE
-0x21	0x0021	#	EXCLAMATION MARK
-0x23	0x178A	#	KHMER LETTER DA
-0x24	0x178C	#	KHMER LETTER DO
+0x21	0x178A	#	KHMER LETTER DA
+0x22	0x178C	#	KHMER LETTER DO
+0x23	0x0023	#	NUMBER SIGN
 0x25	0x178B	#	KHMER LETTER TTHA
 0x26	0x178D	#	KHMER LETTER TTHO
 0x27	0x178E	#	KHMER LETTER NNO
-0x28	0x0028	#	LEFT PARENTHESIS
-0x29	0x0029	#	RIGHT PARENTHESIS
-0x2A	0x178F	#	KHMER LETTER TA
-0x2B	0x1790	#	KHMER LETTER THA
+0x28	0x178F	#	KHMER LETTER TA
+0x29	0x1790	#	KHMER LETTER THA
+0x2A	0x002A	#	ASTERISK
+0x2B	0x002B	#	PLUS SIGN
 0x2C	0x002C	#	COMMA
 0x2D	0x1791	#	KHMER LETTER TO
 0x2E	0x002E	#	FULL STOP
@@ -244,14 +253,13 @@
 0x45	0x179A	#	KHMER LETTER RO
 0x46	0x179B	#	KHMER LETTER LO
 0x47	0x17A1	#	KHMER LETTER LA
-
 0x49	0x179C	#	KHMER LETTER VO
 0x4A	0x179F	#	KHMER LETTER SA
 0x4B	0x179E	#	KHMER LETTER SSO
 0x4C	0x179D	#	KHMER LETTER SHA
 0x4D	0x17A0	#	KHMER LETTER HA
-0x4E	0x17D0	#	KHMER SIGN SAMYOK SANNYA (cmp thai MAI HAN-AKAT)
-0x4F	0x17CB	#	KHMER SIGN BANTOC (MAI ) (bantak) ((LAO VOWEL SIGN MAI KAN 0x4F * vowel shortener; THAI CHARACTER MAI HAN-AKAT))
+0x4E	0x17CC	#	KHMER SIGN ROBAT (MAI )
+0x4F	0x17D0	#	KHMER SIGN SAMYOK SANNYA (cmp thai MAI HAN-AKAT; lao MAI KAN)
 0x50	0x17B6	#	KHMER VOWEL SIGN AA
 0x51	0x17B7	#	KHMER VOWEL SIGN I
 0x52	0x17B8	#	KHMER VOWEL SIGN II
@@ -264,11 +272,11 @@
 0x59	0x17C2	#	KHMER VOWEL SIGN AE   ((17C1+17D0))
 0x5A	0x17C3	#	KHMER VOWEL SIGN AI
 0x5B	0x17CA	#	KHMER SIGN TRIISAP (MAI ) ((candra o))
-#0x5C	0x17DF	#	unallocated code point; right side of 17C5 (candra o...)
+#0x5C	0x17DF	#	unallocated code point; AU LENGHT MARK (candra o)
 0x5D	0x17C4	#	KHMER VOWEL SIGN OO   17C1+17B6
 0x5E	0x17C5	#	KHMER VOWEL SIGN AU   17C1+[17DF]  with AU LENGHT MARK (candra o)
-0x5F	0x17CD	#	KHMER SIGN TOANDAKHIAT (CANCELLATION MARK)
-0x60	0x17D2	#	KHMER SIGN COENG (VIRAMA)  
+0x5F	0x17D2	#	KHMER SIGN COENG (VIRAMA)  
+0x60	0x17CB	#	KHMER SIGN BANTOC (MAI ) (bantak) (final virama)
 0x61	0x0061	#	LATIN SMALL LETTER A
 0x62	0x0062	#	LATIN SMALL LETTER B
 0x63	0x0063	#	LATIN SMALL LETTER C
@@ -295,5 +303,8 @@
 0x78	0x0078	#	LATIN SMALL LETTER X
 0x79	0x0079	#	LATIN SMALL LETTER Y
 0x7A	0x007A	#	LATIN SMALL LETTER Z
-
+0x7B	0x17CE	#	KHMER SIGN KAKABAT (MAI )
+0x7C	0x17CF	#	KHMER SIGN AHSDA (MAI )
+0x7D	0x17DD	#	KHMER SIGN ATTHACAN (MAI )
+0x7E	0x17D6	#	KHMER SIGN CAMNUC PII KUUH * functions as colon
 0x7F	0x17D7	#	KHMER SIGN LEK TOO (word repetition for plural)

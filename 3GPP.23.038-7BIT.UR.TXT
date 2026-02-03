@@ -1,13 +1,13 @@
 # 3GPP.23.038-7BIT.UR.TXT
-# Date: 2025-07-04
+# Date: 2025-12-21
 # © 2025 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
-#	Name:             3GPP 23.038 7-bit for Urdu (Eastern Arabic) (0x13) to Unicode
-#	Unicode version:  16.0 and later
+#	Name:             3GPP 23.038 7-bit for Urdu (Eastern Arabic alphabet) (0x13) to Unicode
+#	Unicode version:  17.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2025 July 04
+#	Date:             2025 December 21
 #	Authors:          Kent Karlsson
 #
 #	General notes:
@@ -20,22 +20,33 @@
 #	This 7-bit encoding (and mapping) should only be used in the context of
 #	SMS/CBS (including processing of such messages).
 #
-#	Note also that for all of the SMS/CBS/USSD encodings 0x00(00) is 
-#	NOT used as string terminator or filler but 0x00 often encodes a
-#	character. Instead CARRIAGE RETURN is used as terminator/filler
-#	when needed (the SMS protocol also has a "payload" length field).
+#	An SS2 character (0x1B) that is not part of a mapped SS2 sequence
+#	should be mapped to REPLACEMENT CHARACTER, to indicate the encoding
+#	error. See the @missing declarations below. (3GPP 03.038 specifies
+#	mapping SS2 alone to SPACE, but that is not generally helpful.)
+#
+#	0x0D is CR which is used as filler after the actual message text,
+#	and in case of 2-letter (always in original default 7-bit encoding)
+#	language code prefix (a language tagging method available only for
+#	the CBS protocol), also between the language code and actual message.
+#	These CR characters are to be inserted (when converting to an
+#	SMS/CBS encoding, also the UTF-16BE encoding as used for SMS/CBS)
+#	or removed (when converting from an SMS/CBS encoding). A CR 
+#	occurring strictly INSIDE of a message (should not happen...)
+#	should be converted to LF. This handling of CR is not reflected
+#	in the table below, which just maps CR to CR.
+#
+#	Note that 0x00 is the code for ARABIC LETTER ALEF. It is never used as
+#	filler or terminator.
 #
 #	The characters here are mostly Arabic letters (+ "Latin" letters
 #	and digits), thus for displaying messages in this encoding one
 #	must apply both the bidi algorithm and Arabic shaping (preshaped
-#	Arabic letters are not encoded). For the bidi algorithm, *without*
-#	any bidi controls, the "paragraph level" parameter is always "LTR"
-#	for SMS/CBS messages. The bidi  algoritnm is applied *after*
-#	submessage concatenation (so a message can be split mid-sentence
-#	without affecting display order). Note that automatic line breaking
-#	can insert LINE SEPARATOR CHARACTERS during the bidi process. There
-#	is no HT in the coding below and cannot be introduced by the extension
-#	mechanism.
+#	Arabic letters are not encoded). The "paragraph level" parameter
+#	is always "LTR" for SMS/CBS messages. The bidi  algoritnm is applied
+#	*after* submessage concatenation. LRM and RLM can be used to "fix"
+#	bidi ordering issues for 'bidi neutral' symbols, like quote marks,
+#	comma, full stop, ... in case of 'order change' around the symbol.
 #
 #	Format:  Three tab-separated columns
 #		 Column #1 is the 3GPP TS 23.038 7-bit Urdu alphabet (0x13) code
@@ -67,27 +78,27 @@
 0x02	0x067B	#	ARABIC LETTER BEEH
 0x03	0x067E	#	ARABIC LETTER PEH
 0x04	0x0680	#	ARABIC LETTER BEHEH
-0x05	0x0641	#	ARABIC LETTER FEH
-0x06	0x06A6	#	ARABIC LETTER PEHEH
-0x07	0x062A	#	ARABIC LETTER TEH
-0x08	0x067C	#	ARABIC LETTER TEH WITH RING
-0x09	0x067D	#	ARABIC LETTER TEH WITH THREE DOTS ABOVE DOWNWARDS
+0x05	0x062A	#	ARABIC LETTER TEH
+0x06	0x067C	#	ARABIC LETTER TEH WITH RING
+0x07	0x067D	#	ARABIC LETTER TEH WITH THREE DOTS ABOVE DOWNWARDS
+0x08	0x0679	#	ARABIC LETTER TTEH
+0x09	0x062B	#	ARABIC LETTER THEH
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
-0x0B	0x0679	#	ARABIC LETTER TTEH
-0x0C	0x062B	#	ARABIC LETTER THEH
+0x0B	0x067A	#	ARABIC LETTER TTEHEH
+0x0C	0x067F	#	ARABIC LETTER TEHEH
 0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
-0x0E	0x067A	#	ARABIC LETTER TTEHEH
-0x0F	0x067F	#	ARABIC LETTER TEHEH
-0x10	0x0622	#	ARABIC LETTER ALEF WITH MADDA ABOVE
+0x0E	0x0641	#	ARABIC LETTER FEH
+0x0F	0x06A6	#	ARABIC LETTER PEHEH
+0x10	0x0622	#	ARABIC LETTER ALEF WITH MADDA ABOVE		0627 0653
 0x11	0x005F	#	LOW LINE
-0x12	0x0681	#	ARABIC LETTER HAH WITH HAMZA ABOVE
-0x13	0x0683	#	ARABIC LETTER NYEH
-0x14	0x0684	#	ARABIC LETTER DYEH
-0x15	0x0685	#	ARABIC LETTER HAH WITH THREE DOTS ABOVE
-0x16	0x0686	#	ARABIC LETTER TCHEH
-0x17	0x0687	#	ARABIC LETTER TCHEHEH
-0x18	0x062D	#	ARABIC LETTER HAH
-0x19	0x062E	#	ARABIC LETTER KHAH
+0x12	0x062D	#	ARABIC LETTER HAH
+0x13	0x062E	#	ARABIC LETTER KHAH
+0x14	0x062C	#	ARABIC LETTER JEEM
+0x15	0x0681	#	ARABIC LETTER HAH WITH HAMZA ABOVE		062D 0654
+0x16	0x0683	#	ARABIC LETTER NYEH
+0x17	0x0684	#	ARABIC LETTER DYEH
+0x18	0x0685	#	ARABIC LETTER HAH WITH THREE DOTS ABOVE
+0x19	0x0686	#	ARABIC LETTER TCHEH
 0x1A	0x062F	#	ARABIC LETTER DAL
 #0x1B	SINGLE SHIFT TWO (no mapping by itself, see also @missing above)
 0x1B00	0x0040	#	COMMERCIAL AT
@@ -96,26 +107,31 @@
 0x1B03	0x00A5	#	YEN SIGN
 0x1B04	0x00A7	#	SECTION SIGN
 0x1B05	0x0022	#	QUOTATION MARK
-0x1B06	0x00A4	#	CURRENCY SIGN
+0x1B06	0x20AC	#	EURO SIGN
 0x1B07	0x0025	#	PERCENT SIGN
 0x1B08	0x0026	#	AMPERSAND
 0x1B09	0x0027	#	APOSTROPHE
 0x1B0A	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
 0x1B0B	0x2212	#	MINUS SIGN
-0x1B0C	0x002B	#	PLUS SIGN
+0x1B0C	0x0021	#	EXCLAMATION MARK
 0x1B0D	0x009B	#	CONTROL SEQUENCE INTRODUCER (enable CSInnn_ decimal character references and selected CSIxxxm styling)
-0x1B0E	0x002D	#	HYPHEN-MINUS
+0x1B0E	0x0696	#	ARABIC LETTER REH WITH DOT BELOW AND DOT ABOVE
+0x1B0F	0x0693	#	ARABIC LETTER REH WITH RING
 0x1B10	0x003C	#	LESS-THAN SIGN
 0x1B11	0x003D	#	EQUALS SIGN
 0x1B12	0x003E	#	GREATER-THAN SIGN
 0x1B13	0x20B9	#	INDIAN RUPEE SIGN
 0x1B14	0x005E	#	CIRCUMFLEX ACCENT
-0x1B17	0x0023	#	NUMBER SIGN
-0x1B18	0x002A	#	ASTERISK
-0x1B19	0x066B	#	ARABIC DECIMAL SEPARATOR
-0x1B1A	0x066C	#	ARABIC THOUSANDS SEPARATOR
+0x1B15	0x066B	#	ARABIC DECIMAL SEPARATOR
+0x1B16	0x066C	#	ARABIC THOUSANDS SEPARATOR
+0x1B17	0x0028	#	LEFT PARENTHESIS
+0x1B18	0x0029	#	RIGHT PARENTHESIS
+0x1B19	0x0964	#	DEVANAGARI DANDA (just in case it is used in Urdu...)
+0x1B1A	0x0965	#	DEVANAGARI DOUBLE DANDA (just in case it is used in Urdu...)
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1C	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
+0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0x06F0	#	EXTENDED ARABIC-INDIC DIGIT ZERO
 0x1B1D	0x06F1	#	EXTENDED ARABIC-INDIC DIGIT ONE
 0x1B1E	0x06F2	#	EXTENDED ARABIC-INDIC DIGIT TWO
@@ -126,8 +142,8 @@
 0x1B23	0x06F7	#	EXTENDED ARABIC-INDIC DIGIT SEVEN
 0x1B24	0x06F8	#	EXTENDED ARABIC-INDIC DIGIT EIGHT
 0x1B25	0x06F9	#	EXTENDED ARABIC-INDIC DIGIT NINE
-0x1B26	0x060C	#	ARABIC COMMA
-0x1B27	0x06D4	#	ARABIC FULL STOP
+#0x1B26			#	arabic wavy hamza above
+0x1B27	0x065F	#	ARABIC WAVY HAMZA BELOW
 0x1B28	0x007B	#	LEFT CURLY BRACKET
 0x1B29	0x007D	#	RIGHT CURLY BRACKET
 0x1B2A	0x06F1 0x2044 0x06F4	#	EXTENDED ARABIC-INDIC ¼
@@ -136,17 +152,16 @@
 0x1B2D	0x2A7D	#	LESS-THAN OR SLANTED EQUAL TO
 0x1B2E	0x2A7E	#	GREATER-THAN OR SLANTED EQUAL TO
 0x1B2F	0x005C	#	REVERSE SOLIDUS
-0x1B30	0x0640	#	ARABIC TATWEEL
-0x1B31	0x065F	#	ARABIC WAVY HAMZA BELOW
-0x1B32	0x0652	#	ARABIC SUKUN
-0x1B33	0x0658	#	ARABIC MARK NOON GHUNNA
-0x1B34	0x062C	#	ARABIC LETTER JEEM
-0x1B35	0x0624	#	ARABIC LETTER WAW WITH HAMZA ABOVE
-0x1B36	0x0620	#	ARABIC LETTER KASHMIRI YEH
-0x1B37	0x0626	#	ARABIC LETTER YEH WITH HAMZA ABOVE
-0x1B38	0x06CD	#	ARABIC LETTER YEH WITH TAIL
-0x1B39	0x0672	#	ARABIC LETTER ALEF WITH WAVY HAMZA ABOVE
-######	0x0673	#	ARABIC LETTER ALEF WITH WAVY HAMZA BELOW (deprecated; use the sequence 0627 065F instead)
+0x1B30	0x060D	#	ARABIC DATE SEPARATOR
+0x1B31	0x0654	#	ARABIC HAMZA ABOVE
+0x1B32	0x0655	#	ARABIC HAMZA BELOW
+0x1B33	0x0623	#	ARABIC LETTER ALEF WITH HAMZA ABOVE
+0x1B34	0x0672	#	ARABIC LETTER ALEF WITH WAVY HAMZA ABOVE
+0x1B35	0x0673	#	ARABIC LETTER ALEF WITH WAVY HAMZA BELOW   Use 0627 065F... But does not actually have any decomposition
+0x1B36	0x064A	#	ARABIC LETTER YEH
+0x1B37	0x0620	#	ARABIC LETTER KASHMIRI YEH
+0x1B38	0x0626	#	ARABIC LETTER YEH WITH HAMZA ABOVE	064A 0654
+0x1B39	0x06CD	#	ARABIC LETTER YEH WITH TAIL (only use at *end* of word)
 0x1B3A	0x2248	#	ALMOST EQUAL TO
 0x1B3B	0x2260	#	NOT EQUAL TO
 0x1B3C	0x005B	#	LEFT SQUARE BRACKET
@@ -180,17 +195,17 @@
 0x1B58	0x0058	#	LATIN CAPITAL LETTER X
 0x1B59	0x0059	#	LATIN CAPITAL LETTER Y
 0x1B5A	0x005A	#	LATIN CAPITAL LETTER Z
-0x1B5B	0x064B	#	ARABIC FATHATAN
-0x1B5C	0x064E	#	ARABIC FATHA
+0x1B5B	0x061B	#	ARABIC SEMICOLON
+0x1B5C	0x061F	#	ARABIC QUESTION MARK
 0x1B5D	0x066A	#	ARABIC PERCENT SIGN
 0x1B5E	0x0609	#	ARABIC-INDIC PER MILLE SIGN
-0x1B5F	0x0690	#	ARABIC LETTER DAL WITH FOUR DOTS ABOVE
+0x1B5F	0x0690	#	ARABIC LETTER DAL WITH FOUR DOTS ABOVE ..............
 0x1B60	0x00BC	#	VULGAR FRACTION ONE QUARTER
 0x1B61	0x00BD	#	VULGAR FRACTION ONE HALF
 0x1B62	0x00BE	#	VULGAR FRACTION THREE QUARTERS
 0x1B63	0x201C	#	LEFT DOUBLE QUOTATION MARK
 0x1B64	0x201D	#	RIGHT DOUBLE QUOTATION MARK
-0x1B65	0x20AC	#	EURO SIGN
+0x1B65	0x00A4	#	CURRENCY SIGN
 0x1B66	0x03A9	#	GREEK CAPITAL LETTER OMEGA (ohm sign)
 0x1B67	0x03BC	#	GREEK SMALL LETTER MU (micro sign)
 0x1B68	0x00B0	#	DEGREE SIGN
@@ -203,33 +218,40 @@
 0x1B6F	0x2019	#	RIGHT SINGLE QUOTATION MARK 
 0x1B70	0x26A0	#	WARNING SIGN (can be rendered in emoji style)
 0x1B71	0x221E	#	INFINITY
-0x1B72	0x00B2	#	SUPERSCRIPT TWO		(also CSI56:1m2CSI56m)
+0x1B72	0x00B2	#	SUPERSCRIPT TWO	(also CSI56:1m2CSI56m)
 0x1B73	0x00B3	#	SUPERSCRIPT THREE	(also CSI56:1m3CSI56m)
-0x1B74	0x06D5	#	ARABIC LETTER AE
-0x1B75	0x0696	#	ARABIC LETTER REH WITH DOT BELOW AND DOT ABOVE
-0x1B76	0x06C2	#	ARABIC LETTER HEH GOAL WITH HAMZA ABOVE
-0x1B77	0x061B	#	ARABIC SEMICOLON
-0x1B78	0x061F	#	ARABIC QUESTION MARK
-0x1B79	0x060D	#	ARABIC DATE SEPARATOR
+0x1B74	0x0687	#	ARABIC LETTER TCHEHEH .......................
+0x1B75	0x0647	#	ARABIC LETTER HEH
+0x1B76	0x06C1	#	ARABIC LETTER HEH GOAL
+0x1B77	0x06C2	#	ARABIC LETTER HEH GOAL WITH HAMZA ABOVE     06C1 0654
+0x1B78	0x06BE	#	ARABIC LETTER HEH DOACHASHMEE
+0x1B79	0x064B	#	ARABIC FATHATAN
+0x1B7A	0x064D	#	ARABIC KASRATAN
+0x1B7B	0x064C	#	ARABIC DAMMATAN
+0x1B7C	0x0657	#	ARABIC INVERTED DAMMA
+0x1B7D	0x0658	#	ARABIC MARK NOON GHUNNA
+0x1B7E	0x0656	#	ARABIC SUBSCRIPT ALEF
+0x1B7F	0x0670	#	ARABIC LETTER SUPERSCRIPT ALEF
 
-0x1C	0x068C	#	ARABIC LETTER DAHAL
+0x1C	0x068C	#	ARABIC LETTER DAHAL   byt med 0630?
 0x1D	0x0688	#	ARABIC LETTER DDAL
 0x1E	0x0689	#	ARABIC LETTER DAL WITH RING
 0x1F	0x068A	#	ARABIC LETTER DAL WITH DOT BELOW
 0x20	0x0020	#	SPACE
-0x21	0x0021	#	EXCLAMATION MARK
-0x22	0x068F	#	ARABIC LETTER DAL WITH THREE DOTS ABOVE DOWNWARDS
-0x23	0x068D	#	ARABIC LETTER DDAHAL
-0x24	0x0630	#	ARABIC LETTER THAL
+0x21	0x068F	#	ARABIC LETTER DAL WITH THREE DOTS ABOVE DOWNWARDS .........
+0x22	0x068D	#	ARABIC LETTER DDAHAL
+0x23	0x0023	#	NUMBER SIGN
+0x24	0x0630	#	ARABIC LETTER THAL    byt med 068C?
+
 0x25	0x0631	#	ARABIC LETTER REH
-0x26	0x0691	#	ARABIC LETTER RREH
-0x27	0x0693	#	ARABIC LETTER REH WITH RING
-0x28	0x0028	#	LEFT PARENTHESIS
-0x29	0x0029	#	RIGHT PARENTHESIS
-0x2A	0x0699	#	ARABIC LETTER REH WITH FOUR DOTS ABOVE
-0x2B	0x0632	#	ARABIC LETTER ZAIN
+0x26	0x0632	#	ARABIC LETTER ZAIN
+0x27	0x0691	#	ARABIC LETTER RREH
+0x28	0x0698	#	ARABIC LETTER JEH
+0x29	0x0699	#	ARABIC LETTER REH WITH FOUR DOTS ABOVE ..........
+0x2A	0x002A	#	ASTERISK
+0x2B	0x002B	#	PLUS SIGN
 0x2C	0x002C	#	COMMA
-0x2D	0x0698	#	ARABIC LETTER JEH
+0x2D	0x002D	#	HYPHEN-MINUS
 0x2E	0x002E	#	FULL STOP
 0x2F	0x002F	#	SOLIDUS
 0x30	0x0030	#	DIGIT ZERO
@@ -244,19 +266,19 @@
 0x39	0x0039	#	DIGIT NINE
 0x3A	0x003A	#	COLON
 0x3B	0x003B	#	SEMICOLON
-0x3C	0x069A	#	ARABIC LETTER SEEN WITH DOT BELOW AND DOT ABOVE
-0x3D	0x0633	#	ARABIC LETTER SEEN
+0x3C	0x0633	#	ARABIC LETTER SEEN
+0x3D	0x069A	#	ARABIC LETTER SEEN WITH DOT BELOW AND DOT ABOVE
 0x3E	0x0634	#	ARABIC LETTER SHEEN
 0x3F	0x003F	#	QUESTION MARK
 0x40	0x0635	#	ARABIC LETTER SAD
-0x41	0x0636	#	ARABIC LETTER DAD
+0x41	0x0636	#	ARABIC LETTER DAD	move to 1b...?
 0x42	0x0637	#	ARABIC LETTER TAH
-0x43	0x0638	#	ARABIC LETTER ZAH
-0x44	0x0639	#	ARABIC LETTER AIN
+0x43	0x0638	#	ARABIC LETTER ZAH move to 1b...?
+0x44	0x0639	#	ARABIC LETTER AIN move to 1b...?
 0x45	0x063A	#	ARABIC LETTER GHAIN
 0x46	0x0642	#	ARABIC LETTER QAF
 0x47	0x06A9	#	ARABIC LETTER KEHEH
-0x48	0x06AA	#	ARABIC LETTER SWASH KAF
+0x48	0x06AA	#	ARABIC LETTER SWASH KAF	move to 1b...?
 0x49	0x06AB	#	ARABIC LETTER KAF WITH RING
 0x4A	0x06AF	#	ARABIC LETTER GAF
 0x4B	0x06B3	#	ARABIC LETTER GUEH
@@ -269,19 +291,18 @@
 0x52	0x06BC	#	ARABIC LETTER NOON WITH RING
 0x53	0x0648	#	ARABIC LETTER WAW
 0x54	0x06C4	#	ARABIC LETTER WAW WITH RING
-
-0x55	0x06C1	#	ARABIC LETTER HEH GOAL
-0x56	0x06BE	#	ARABIC LETTER HEH DOACHASHMEE
+0x55	0x0624	#	ARABIC LETTER WAW WITH HAMZA ABOVE	0648 0654
+0x56	0x06C6	#	ARABIC LETTER OE
 0x57	0x0621	#	ARABIC LETTER HAMZA
 0x58	0x06CC	#	ARABIC LETTER FARSI YEH
 0x59	0x06D0	#	ARABIC LETTER E
-0x5A	0x06D2	#	ARABIC LETTER YEH BARREE
-0x5B	0x0650	#	ARABIC KASRA
-0x5C	0x064D	#	ARABIC KASRATAN
+0x5A	0x06D2	#	ARABIC LETTER YEH BARREE	till 0x1B..?
+0x5B	0x064E	#	ARABIC FATHA
+0x5C	0x0650	#	ARABIC KASRA
 0x5D	0x064F	#	ARABIC DAMMA
-0x5E	0x064C	#	ARABIC DAMMATAN
-0x5F	0x0657	#	ARABIC INVERTED DAMMA
-0x60	0x0651	#	ARABIC SHADDA
+0x5E	0x0651	#	ARABIC SHADDA
+0x5F	0x0653	#	ARABIC MADDAH ABOVE
+0x60	0x0652	#	ARABIC SUKUN
 0x61	0x0061	#	LATIN SMALL LETTER A
 0x62	0x0062	#	LATIN SMALL LETTER B
 0x63	0x0063	#	LATIN SMALL LETTER C
@@ -308,8 +329,87 @@
 0x78	0x0078	#	LATIN SMALL LETTER X
 0x79	0x0079	#	LATIN SMALL LETTER Y
 0x7A	0x007A	#	LATIN SMALL LETTER Z
-0x7B	0x0655	#	ARABIC HAMZA BELOW
-0x7C	0x0654	#	ARABIC HAMZA ABOVE
-0x7D	0x0653	#	ARABIC MADDAH ABOVE
-0x7E	0x0656	#	ARABIC SUBSCRIPT ALEF
-0x7F	0x0670	#	ARABIC LETTER SUPERSCRIPT ALEF
+0x7B	0x060C	#	ARABIC COMMA
+0x7C	0x06D4	#	ARABIC FULL STOP
+0x7D	0x0640	#	ARABIC TATWEEL
+### While zero-width, these should have visible glyphs; like a narrow bar with a ‘flag’ indicating direction.
+0x7E	0x200E	#	LEFT-TO-RIGHT MARK	(in particular for: to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no mix of spacing LTR and RTL chars in the line)
+0x7F	0x200F	#	RIGHT-TO-LEFT MARK	(in particular for: to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no mix of spacing LTR and RTL chars in the line)
+### Bidi AL to be handled as bidi R, except arabic punctuation which is to be handled as ON; 
+### all bidi EN and AN to be handled as L; all ET, ES, CS to be handled as ON for SMS/CBS.
+### 'Paragraph direction' is always LTR for SMS/CBS. There are no nestable bidi controls in SMS/CBS.
+### Bidi mirroring applies; however, bidi mirroring does not apply to arrows, even though arrows most often
+### refer to the adjacent text components, and not external directions; it is up to the author to mirror arrows.
+
+
+
+
+ظ (Ẓāʾ) 0638: This is considered the rarest letter in Arabic, and consequently very rare in Urdu. In 
+  Urdu, it is pronounced the same as zay (ز), zal (ذ), and zvad (ض), and is only found in specific 
+  Arabic loanwords.
+ض (Ḍād) 0636: Similar to Ẓāʾ, this letter represents a distinct emphatic sound in Arabic but is 
+  pronounced exactly like zay (ز) in Urdu. It is restricted to Arabic loanwords.
+ث (Ṡe) 062B: This letter is common in Arabic (pronounced as a soft 'th'). In Urdu, it is pronounced 
+  as a simple 's' (س) and is used only in borrowed vocabulary.
+ح (Ḥe) 062D: While used in Urdu, it is often pronounced identically to the common 'h' (ہ) in everyday 
+  Urdu, despite being a distinct guttural sound in Arabic.
+ذ (Ẕāl) 0630: Pronounced as a hard 'th' in Arabic, it is pronounced as 'z' (ز) in Urdu and is mostly 
+  limited to Arabic loanwords.
+ة (Tāʾ marbūṭah) --: This is common in Arabic for feminine nouns but is almost never used in native 
+  Urdu words, usually replaced by the Hae (ہ) or Tae (ت) sound in Urdu spelling, or dropped.
+ع ('Ain) 0639: While used in Urdu, it is often used as a vowel placeholder (similar to Alif) and its 
+  distinct Arabic pharyngeal sound is rarely pronounced by native Urdu speakers. 
+
+
+
+Here are the main letters/forms used in Arabic but largely absent or rarely used in Urdu:
+
+ة (Tāʾ marbūṭah) --: This is very common in Arabic to mark feminine nouns (e.g., مدرسة - madrasah). 
+  In Urdu, these words are almost always spelled with a final ہ (chhotī he) or ت (tē) instead 
+  (e.g., مدرسہ - madrasah).
+ال (Alif-Lam): The Arabic definite article "the" (ال) is used in some loanwords but is 
+  not used grammatically in Urdu.
+  
+Emphatic Consonants 
+(ص,0635
+ ض,0636
+ ط,0637
+ ظ): 0638
+ While these letters exist in the Urdu alphabet, they are 
+used primarily in Arabic loanwords and are not native to Urdu phonology. In many cases, their 
+unique Arabic pronunciation is lost, and they are pronounced similarly to other letters 
+(e.g., ص is  0635   often pronounced like sīn/س).0633
+
+Letter 0636 ḍād (ض):  Often regarded as one of the hardest Arabic letters to replicate, it
+is extremely rare to find it used correctly in non-religious, everyday Urdu vocabulary.
+
+Interdental Fricatives 062B
+(ث,    
+ذ): These 0630 are also typically restricted to Arabic loanwords 
+and are rarely used in native, everyday Urdu words, often replaced by sīn/س and zay/ز 
+respectively in popular usage. 
+
+Important Context:
+Urdu actually includes letters that Arabic does not have, 
+such as پ (pe 067E), چ (che 0686), گ (gaf 06AF), and ڑ (rha 0691), 
+ due to its Persian and Indo-Aryan influence.
+ 
+Urdu uses the Nastaʿlīq script, which is a different, more cursive handwriting style 
+than the Naskh script typically used for Arabic.
+The letter ژ (zhe) exists in Urdu and Persian, but is not used in Arabic. 
+Therefore, the letters that are distinctly "Arabic only" (or used only in 
+religious/high-register loanwords in Urdu) are primarily ة and the specialized 
+emphatic consonants. 
+
+
+
+
+All three use related writing systems… but the pronounce a lot of letters differently. e.g. In 
+Urdu س ص ث all sound pretty much the same, but they are different in Arabic. Persian has some 
+extra letters: پ p چ ch ژ zh [i think] Urdu has these plus a few extras ٹ T ڈ D ڑ R and ں “nasal 
+vowel”, Arabic and Persian also have T D R but Urdu has two slightly different types of each. A 
+couple of other Arabic letters have diverged in Urdu ـهـ to ـہـ ـھـ and ي to ی ے but they are a 
+bit more complicated to explain. Two letters tend to be written a bit differently in Arabic ك ي to 
+how they are in Persian and Urdu ک ی (enough that they gave then separate unicode characters), but 
+i think the difference is just in appearance, and some dialects of Arabic also often leave the 
+dots off ي in the same situations as Urdu and Persian e.g. in مصری (Egyptian Arabic).

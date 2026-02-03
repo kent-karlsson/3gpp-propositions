@@ -1,13 +1,13 @@
 # 3GPP.23.038-7BIT.MNI.TXT
-# Date: 2025-07-04
+# Date: 2025-12-21
 # © 2025 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
-#	Name:             3GPP 23.038 7-bit for Manipuri (Meetei Mayek) (0x20) to Unicode
-#	Unicode version:  16.0 and later
+#	Name:             3GPP 23.038 7-bit for Manipuri (Meetei Mayek alphabet) (0x20) to Unicode
+#	Unicode version:  17.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2025 July 04
+#	Date:             2025 December 21
 #	Authors:          Kent Karlsson
 #
 #	General notes:
@@ -20,10 +20,24 @@
 #	This 7-bit encoding (and mapping) should only be used in the context of
 #	SMS/CBS (including processing of such messages).
 #
-#	Note also that for all of the SMS/CBS/USSD encodings 0x00(00) is 
-#	NOT used as string terminator or filler but 0x00 often encodes a
-#	character. Instead CARRIAGE RETURN is used as terminator/filler
-#	when needed (the SMS protocol also has a "payload" length field).
+#	An SS2 character (0x1B) that is not part of a mapped SS2 sequence
+#	should be mapped to REPLACEMENT CHARACTER, to indicate the encoding
+#	error. See the @missing declarations below. (3GPP 03.038 specifies
+#	mapping SS2 alone to SPACE, but that is not generally helpful.)
+#
+#	0x0D is CR which is used as filler after the actual message text,
+#	and in case of 2-letter (always in original default 7-bit encoding)
+#	language code prefix (a language tagging method available only for
+#	the CBS protocol), also between the language code and actual message.
+#	These CR characters are to be inserted (when converting to an
+#	SMS/CBS encoding, also the UTF-16BE encoding as used for SMS/CBS)
+#	or removed (when converting from an SMS/CBS encoding). A CR 
+#	occurring strictly INSIDE of a message (should not happen...)
+#	should be converted to LF. This handling of CR is not reflected
+#	in the table below, which just maps CR to CR.
+#
+#	Note that 0x00 is a character code (unassigned). It is never used as filler
+#	or terminator.
 #
 #	As for all Indic scripts, script specific "shaping"
 #	need to be done for proper display.
@@ -53,27 +67,20 @@
 # @missing: 0x1B1C..0x1B7F	0xFFFD	#	SS2 -> REPLACEMENT CHARACTER
 # @missing: 0x1C..0x7F	0xFFFD	#	REPLACEMENT CHARACTER
 #
-
 0x01	0xABEA	#	MEETEI MAYEK VOWEL SIGN NUNG anusvara
 0x02	0xAAF5	#	MEETEI MAYEK VOWEL SIGN VISARGA
 0x03	0xABD1	#	MEETEI MAYEK LETTER ATIYA a
-#0x04	(aa)
 0x05	0xABCF	#	MEETEI MAYEK LETTER I i
-#0x06	(ii)									(use ABD1+AAEB?)
 0x07	0xABCE	#	MEETEI MAYEK LETTER UN u
-#0x08 (uu)									(use ABD1+AAEC?)
-#0x09 (voc r)
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
-#0x0B (voc l)
-#0x0C (candra e)
 0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
-0x0E	0xAAE0	#	MEETEI MAYEK LETTER E		use ABD1+ABE6 (ꯑꯦ) instead
-#0x0F (ee)	
-#0x10 (ai/ei)									use ABD1+ABE9 (ꯑꯩ)
+0x0E	0xAAE0	#	MEETEI MAYEK LETTER E	old ortho	use ABD1+ABE6 (ꯑꯦ) instead
+#0x0F				ee
+#0x10				(ai/ei)					use ABD1+ABE9 (ꯑꯩ)
 0x11	0x005F	#	LOW LINE
-0x12	0xAAE1	#	MEETEI MAYEK LETTER O		use ABD1+ABE3 (ꯑꯣ) instead
-#0x13 (oo)
-#0x14 (au/ou)									use ABD1+ABE7 (ꯑꯧ)
+0x12	0xAAE1	#	MEETEI MAYEK LETTER O	old ortho	use ABD1+ABE3 (ꯑꯣ) instead
+#0x13				oo
+#0x14				(au/ou)					use ABD1+ABE7 (ꯑꯧ)
 0x15	0xABC0	#	MEETEI MAYEK LETTER KOK ka
 0x16	0xABC8	#	MEETEI MAYEK LETTER KHOU kha
 0x17	0xABD2	#	MEETEI MAYEK LETTER GOK ga
@@ -87,13 +94,13 @@
 0x1B03	0x00A5	#	YEN SIGN
 0x1B04	0x00A7	#	SECTION SIGN
 0x1B05	0x0022	#	QUOTATION MARK
-0x1B06	0x00A4	#	CURRENCY SIGN
+0x1B06	0x20AC	#	EURO SIGN
 0x1B07	0x0025	#	PERCENT SIGN
 0x1B08	0x0026	#	AMPERSAND
 0x1B09	0x0027	#	APOSTROPHE
 0x1B0A	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
 0x1B0B	0x2212	#	MINUS SIGN
-0x1B0C	0x002B	#	PLUS SIGN
+0x1B0C	0x0021	#	EXCLAMATION MARK
 0x1B0D	0x009B	#	CONTROL SEQUENCE INTRODUCER (enable CSInnn_ decimal character references and selected CSIxxxm styling)
 0x1B0E	0x002D	#	HYPHEN-MINUS
 0x1B10	0x003C	#	LESS-THAN SIGN
@@ -101,14 +108,14 @@
 0x1B12	0x003E	#	GREATER-THAN SIGN
 0x1B13	0x20B9	#	INDIAN RUPEE SIGN
 0x1B14	0x005E	#	CIRCUMFLEX ACCENT
-0x1B15	0xAAF1	#	MEETEI MAYEK AHANG KHUDAM  (question mark)
-0x1B16	0xAAF2	#	MEETEI MAYEK ANJI
-0x1B17	0x0023	#	NUMBER SIGN
-0x1B18	0x002A	#	ASTERISK
+0x1B17	0x0028	#	LEFT PARENTHESIS
+0x1B18	0x0029	#	RIGHT PARENTHESIS
 0x1B19	0xAAF0	#	MEETEI MAYEK CHEIKHAN (dup of Devanagari) danda
 0x1B1A	0xABEB	#	MEETEI MAYEK CHEIKHEI (dup of Devanagari) double danda
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1C	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
+0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0xABF0	#	MEETEI MAYEK DIGIT ZERO
 0x1B1D	0xABF1	#	MEETEI MAYEK DIGIT ONE
 0x1B1E	0xABF2	#	MEETEI MAYEK DIGIT TWO
@@ -127,7 +134,6 @@
 0x1B2D	0x2A7D	#	LESS-THAN OR SLANTED EQUAL TO
 0x1B2E	0x2A7E	#	GREATER-THAN OR SLANTED EQUAL TO
 0x1B2F	0x005C	#	REVERSE SOLIDUS
-
 0x1B3A	0x2248	#	ALMOST EQUAL TO
 0x1B3B	0x2260	#	NOT EQUAL TO
 0x1B3C	0x005B	#	LEFT SQUARE BRACKET
@@ -161,15 +167,13 @@
 0x1B58	0x0058	#	LATIN CAPITAL LETTER X
 0x1B59	0x0059	#	LATIN CAPITAL LETTER Y
 0x1B5A	0x005A	#	LATIN CAPITAL LETTER Z
-
-0x1B5E	0xAAF3	#	MEETEI MAYEK SYLLABLE REPETITION MARK
-0x1B5F	0xAAF4	#	MEETEI MAYEK WORD REPETITION MARK
+0x1B5F	0xAAF6	#	MEETEI MAYEK VIRAMA
 0x1B60	0x00BC	#	VULGAR FRACTION ONE QUARTER
 0x1B61	0x00BD	#	VULGAR FRACTION ONE HALF
 0x1B62	0x00BE	#	VULGAR FRACTION THREE QUARTERS
 0x1B63	0x201C	#	LEFT DOUBLE QUOTATION MARK
 0x1B64	0x201D	#	RIGHT DOUBLE QUOTATION MARK
-0x1B65	0x20AC	#	EURO SIGN
+0x1B65	0x00A4	#	CURRENCY SIGN
 0x1B66	0x03A9	#	GREEK CAPITAL LETTER OMEGA (ohm sign)
 0x1B67	0x03BC	#	GREEK SMALL LETTER MU (micro sign)
 0x1B68	0x00B0	#	DEGREE SIGN
@@ -182,37 +186,33 @@
 0x1B6F	0x2019	#	RIGHT SINGLE QUOTATION MARK 
 0x1B70	0x26A0	#	WARNING SIGN (can be rendered in emoji style)
 0x1B71	0x221E	#	INFINITY
-0x1B72	0x00B2	#	SUPERSCRIPT TWO		(also CSI56:1m2CSI56m)
+0x1B72	0x00B2	#	SUPERSCRIPT TWO	(also CSI56:1m2CSI56m)
 0x1B73	0x00B3	#	SUPERSCRIPT THREE	(also CSI56:1m3CSI56m)
-
-0x1B75	0xAAF6	#	MEETEI MAYEK VIRAMA (not visible as such * (control code) used to form conjuncts in historical orthographies
-#"half" g,gh,j,jh,d,dh,b,bh,r (formed via MEETEI MAYEK VIRAMA?)
-0x1B76	0xABDB	#	MEETEI MAYEK LETTER KOK LONSUM k  0x15
-0x1B77	0xABE1	#	MEETEI MAYEK LETTER NGOU LONSUM ng 0x19
-0x1B78	0xABE0	#	MEETEI MAYEK LETTER TIL LONSUM t  0x27
-0x1B79	0xABDF	#	MEETEI MAYEK LETTER NA LONSUM n  0x2F
-0x1B7A	0xABDE	#	MEETEI MAYEK LETTER PA LONSUM p  0x3D
-0x1B7B	0xABDD	#	MEETEI MAYEK LETTER MIT LONSUM m  0x42
-0x1B7C	0xABE2	#	MEETEI MAYEK LETTER I LONSUM i  0x43
-0x1B7D	0xABDC	#	MEETEI MAYEK LETTER LAI LONSUM l  0x46
-#"half" s?
-
+#"half" g,gh,j,jh,d,dh,b,bh,r,s (formed via MEETEI MAYEK VIRAMA?)
+0x1B75	0xABDB	#	MEETEI MAYEK LETTER KOK LONSUM k  0x15
+0x1B76	0xABE1	#	MEETEI MAYEK LETTER NGOU LONSUM ng 0x19
+0x1B77	0xABE0	#	MEETEI MAYEK LETTER TIL LONSUM t  0x27
+0x1B78	0xABDF	#	MEETEI MAYEK LETTER NA LONSUM n  0x2F
+0x1B7C	0xABDE	#	MEETEI MAYEK LETTER PA LONSUM p  0x3D
+0x1B7D	0xABDD	#	MEETEI MAYEK LETTER MIT LONSUM m  0x42
+0x1B7E	0xABE2	#	MEETEI MAYEK LETTER I LONSUM i  0x43
+0x1B7F	0xABDC	#	MEETEI MAYEK LETTER LAI LONSUM l  0x46
 0x1C	0xAAE2	#	MEETEI MAYEK LETTER CHA
 0x1D	0xABD6	#	MEETEI MAYEK LETTER JIL ja
 0x1E	0xABD3	#	MEETEI MAYEK LETTER JHAM jha
 0x1F	0xAAE3	#	MEETEI MAYEK LETTER NYA
 0x20	0x0020	#	SPACE
-0x21	0x0021	#	EXCLAMATION MARK
-0x22	0xABC7	#	MEETEI MAYEK LETTER TIL ta
-0x23	0xAAE4	#	MEETEI MAYEK LETTER TTA
+0x21	0xABC7	#	MEETEI MAYEK LETTER TIL ta
+0x22	0xAAE4	#	MEETEI MAYEK LETTER TTA
+0x23	0x0023	#	NUMBER SIGN
 0x24	0xABCA	#	MEETEI MAYEK LETTER THOU tha
 0x25	0xAAE5	#	MEETEI MAYEK LETTER TTHA
 0x26	0xABD7	#	MEETEI MAYEK LETTER DIL da
 0x27	0xAAE6	#	MEETEI MAYEK LETTER DDA
-0x28	0x0028	#	LEFT PARENTHESIS
-0x29	0x0029	#	RIGHT PARENTHESIS
-0x2A	0xABD9	#	MEETEI MAYEK LETTER DHOU dha
-0x2B	0xAAE7	#	MEETEI MAYEK LETTER DDHA
+0x28	0xABD9	#	MEETEI MAYEK LETTER DHOU dha
+0x29	0xAAE7	#	MEETEI MAYEK LETTER DDHA
+0x2A	0x002A	#	ASTERISK
+0x2B	0x002B	#	PLUS SIGN
 0x2C	0x002C	#	COMMA
 0x2D	0xABC5	#	MEETEI MAYEK LETTER NA na
 0x2E	0x002E	#	FULL STOP
@@ -244,25 +244,20 @@
 0x4B	0xAAEA	#	MEETEI MAYEK LETTER SSA
 0x4C	0xAAE9	#	MEETEI MAYEK LETTER SHA
 0x4D	0xABCD	#	MEETEI MAYEK LETTER HUK ha
-
-
 0x50	0xABE5	#	MEETEI MAYEK VOWEL SIGN ANAP aa
 0x51	0xABE4	#	MEETEI MAYEK VOWEL SIGN INAP i
 0x52	0xAAEB	#	MEETEI MAYEK VOWEL SIGN II
 0x53	0xABE8	#	MEETEI MAYEK VOWEL SIGN UNAP u
 0x54	0xAAEC	#	MEETEI MAYEK VOWEL SIGN UU uu
-#0x55
-#0x56
-#0x57 (candra e)
 0x58	0xABE6	#	MEETEI MAYEK VOWEL SIGN YENAP e
 0x59	0xABE9	#	MEETEI MAYEK VOWEL SIGN CHEINAP ei
 0x5A	0xAAED	#	MEETEI MAYEK VOWEL SIGN AAI aai
-#0x5B (candra o; å)
-0x5C	0xABE3	#	MEETEI MAYEK VOWEL SIGN ONAP o
-0x5D	0xABE7	#	MEETEI MAYEK VOWEL SIGN SOUNAP ou
-0x5E	0xAAEE	#	MEETEI MAYEK VOWEL SIGN AU au
-0x5F	0xABED	#	MEETEI MAYEK APUN IYEK  (VIRAMA; underlines, does not form a conjunct; but we also have explicit half forms...)
-0x60	0xAAEF	#	MEETEI MAYEK VOWEL SIGN AAU aau
+0x5B	0xABE3	#	MEETEI MAYEK VOWEL SIGN ONAP o
+0x5C	0xABE7	#	MEETEI MAYEK VOWEL SIGN SOUNAP ou
+0x5D	0xAAEE	#	MEETEI MAYEK VOWEL SIGN AU au
+0x5E	0xAAEF	#	MEETEI MAYEK VOWEL SIGN AAU aau
+0x5F	0xABED	#	MEETEI MAYEK APUN IYEK  (VIRAMA; underlines the two Meitei consonants it is between, does not form a conjunct; if not between two consonants, underline only the preceeding spacing character)
+0x60	0xAAF2	#	MEETEI MAYEK ANJI (om)
 0x61	0x0061	#	LATIN SMALL LETTER A
 0x62	0x0062	#	LATIN SMALL LETTER B
 0x63	0x0063	#	LATIN SMALL LETTER C
@@ -289,5 +284,7 @@
 0x78	0x0078	#	LATIN SMALL LETTER X
 0x79	0x0079	#	LATIN SMALL LETTER Y
 0x7A	0x007A	#	LATIN SMALL LETTER Z
-
-0x7C	0xABEC	#	MEETEI MAYEK LUM IYEK heavy TONE MARK
+0x7C	0xABEC	#	MEETEI MAYEK LUM IYEK (heavy TONE MARK)
+0x7D	0xAAF1	#	MEETEI MAYEK AHANG KHUDAM  (question mark)
+0x7E	0xAAF3	#	MEETEI MAYEK SYLLABLE REPETITION MARK
+0x7F	0xAAF4	#	MEETEI MAYEK WORD REPETITION MARK

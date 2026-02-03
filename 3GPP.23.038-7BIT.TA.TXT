@@ -1,13 +1,13 @@
 # 3GPP.23.038-7BIT.TA.TXT
-# Date: 2025-07-04
+# Date: 2025-12-21
 # © 2025 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
-#	Name:             3GPP 23.038 7-bit for Tamil (0x1B) to Unicode
-#	Unicode version:  16.0 and later
+#	Name:             3GPP 23.038 7-bit for Tamil alphabet (0x1B) to Unicode
+#	Unicode version:  17.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2025 July 04
+#	Date:             2025 December 21
 #	Authors:          Kent Karlsson
 #
 #	General notes:
@@ -20,14 +20,29 @@
 #	This 7-bit encoding (and mapping) should only be used in the context of
 #	SMS/CBS (including processing of such messages).
 #
-#	Note also that for all of the SMS/CBS/USSD encodings 0x00(00) is 
-#	NOT used as string terminator or filler but 0x00 often encodes a
-#	character. Instead CARRIAGE RETURN is used as terminator/filler
-#	when needed (the SMS protocol also has a "payload" length field).
+#	An SS2 character (0x1B) that is not part of a mapped SS2 sequence
+#	should be mapped to REPLACEMENT CHARACTER, to indicate the encoding
+#	error. See the @missing declarations below. (3GPP 03.038 specifies
+#	mapping SS2 alone to SPACE, but that is not generally helpful.)
+#
+#	0x0D is CR which is used as filler after the actual message text,
+#	and in case of 2-letter (always in original default 7-bit encoding)
+#	language code prefix (a language tagging method available only for
+#	the CBS protocol), also between the language code and actual message.
+#	These CR characters are to be inserted (when converting to an
+#	SMS/CBS encoding, also the UTF-16BE encoding as used for SMS/CBS)
+#	or removed (when converting from an SMS/CBS encoding). A CR 
+#	occurring strictly INSIDE of a message (should not happen...)
+#	should be converted to LF. This handling of CR is not reflected
+#	in the table below, which just maps CR to CR.
+#
+#	Note that 0x00 is a character code (unassigned). It is never used as filler
+#	or terminator.
 #
 #	As for all Indic scripts, script specific "shaping" (in particular
 #	VIRAMA between consonant letters as well as combining characters)
-#	need to be done for proper display.
+#	need to be done for proper display. (Note also that the Tamil script
+#	is very similar to the Grantha script, which is NOT covered here.)
 #
 #	Format:  Three tab-separated columns
 #		 Column #1 is the 3GPP TS 23.038 7-bit Tamil alphabet (0x1B) code
@@ -71,7 +86,6 @@
 0x12	0x0B92	#	TAMIL LETTER O
 0x13	0x0B93	#	TAMIL LETTER OO
 0x14	0x0B94	#	TAMIL LETTER AU
-
 0x15	0x0B95	#	TAMIL LETTER KA
 0x19	0x0B99	#	TAMIL LETTER NGA
 0x1A	0x0B9A	#	TAMIL LETTER CA
@@ -82,13 +96,13 @@
 0x1B03	0x00A5	#	YEN SIGN
 0x1B04	0x00A7	#	SECTION SIGN
 0x1B05	0x0022	#	QUOTATION MARK
-0x1B06	0x00A4	#	CURRENCY SIGN
+0x1B06	0x20AC	#	EURO SIGN
 0x1B07	0x0025	#	PERCENT SIGN
 0x1B08	0x0026	#	AMPERSAND
 0x1B09	0x0027	#	APOSTROPHE
 0x1B0A	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
 0x1B0B	0x2212	#	MINUS SIGN
-0x1B0C	0x002B	#	PLUS SIGN
+0x1B0C	0x0021	#	EXCLAMATION MARK
 0x1B0D	0x009B	#	CONTROL SEQUENCE INTRODUCER (enable CSInnn_ decimal character references and selected CSIxxxm styling)
 0x1B0E	0x002D	#	HYPHEN-MINUS
 0x1B0F	0x0BA9	#	TAMIL LETTER NNNA
@@ -97,12 +111,14 @@
 0x1B12	0x003E	#	GREATER-THAN SIGN
 0x1B13	0x20B9	#	INDIAN RUPEE SIGN
 0x1B14	0x005E	#	CIRCUMFLEX ACCENT
-0x1B17	0x0023	#	NUMBER SIGN
-0x1B18	0x002A	#	ASTERISK
-0x1B19	0x0964	#	DEVANAGARI DANDA
-0x1B1A	0x0965	#	DEVANAGARI DOUBLE DANDA
+0x1B17	0x0028	#	LEFT PARENTHESIS
+0x1B18	0x0029	#	RIGHT PARENTHESIS
+0x1B19	0x0964	#	DEVANAGARI DANDA	not used in Tamil?
+0x1B1A	0x0965	#	DEVANAGARI DOUBLE DANDA	not used in Tamil?
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1C	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
+0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0x0BE6	#	TAMIL DIGIT ZERO
 0x1B1D	0x0BE7	#	TAMIL DIGIT ONE
 0x1B1E	0x0BE8	#	TAMIL DIGIT TWO
@@ -113,8 +129,7 @@
 0x1B23	0x0BED	#	TAMIL DIGIT SEVEN
 0x1B24	0x0BEE	#	TAMIL DIGIT EIGHT
 0x1B25	0x0BEF	#	TAMIL DIGIT NINE
-0x1B26	0x0BF0	#	TAMIL NUMBER TEN
-0x1B27	0x0BF1	#	TAMIL NUMBER ONE HUNDRED
+0x1B27	0x11FFF	#	TAMIL PUNCTUATION END OF TEXT (two 16-bit codes in UTF-16: 0xD807 0xDFFF) historical
 0x1B28	0x007B	#	LEFT CURLY BRACKET
 0x1B29	0x007D	#	RIGHT CURLY BRACKET
 0x1B2A	0x0BE7 0x2044 0x0BEA	#	TAMIL ¼
@@ -123,7 +138,8 @@
 0x1B2D	0x2A7D	#	LESS-THAN OR SLANTED EQUAL TO
 0x1B2E	0x2A7E	#	GREATER-THAN OR SLANTED EQUAL TO
 0x1B2F	0x005C	#	REVERSE SOLIDUS
-
+0x1B38	0x0BF6	#	TAMIL DEBIT SIGN
+0x1B39	0x0BF7	#	TAMIL CREDIT SIGN
 0x1B3A	0x2248	#	ALMOST EQUAL TO
 0x1B3B	0x2260	#	NOT EQUAL TO
 0x1B3C	0x005B	#	LEFT SQUARE BRACKET
@@ -157,16 +173,16 @@
 0x1B58	0x0058	#	LATIN CAPITAL LETTER X
 0x1B59	0x0059	#	LATIN CAPITAL LETTER Y
 0x1B5A	0x005A	#	LATIN CAPITAL LETTER Z
-0x1B5B	0x0BF2	#	TAMIL NUMBER ONE THOUSAND
-0x1B5C	0x0BF9	#	TAMIL RUPEE SIGN
-0x1B5D	0x0BF6	#	TAMIL DEBIT SIGN
-0x1B5E	0x0BF7	#	TAMIL CREDIT SIGN
+0x1B5C	0x0BFA	#	TAMIL NUMBER SIGN
+0x1B5D	0x0BF0	#	TAMIL NUMBER TEN
+0x1B5E	0x0BF1	#	TAMIL NUMBER ONE HUNDRED
+0x1B5F	0x0BF2	#	TAMIL NUMBER ONE THOUSAND
 0x1B60	0x00BC	#	VULGAR FRACTION ONE QUARTER
 0x1B61	0x00BD	#	VULGAR FRACTION ONE HALF
 0x1B62	0x00BE	#	VULGAR FRACTION THREE QUARTERS
 0x1B63	0x201C	#	LEFT DOUBLE QUOTATION MARK
 0x1B64	0x201D	#	RIGHT DOUBLE QUOTATION MARK
-0x1B65	0x20AC	#	EURO SIGN
+0x1B65	0x00A4	#	CURRENCY SIGN
 0x1B66	0x03A9	#	GREEK CAPITAL LETTER OMEGA (ohm sign)
 0x1B67	0x03BC	#	GREEK SMALL LETTER MU (micro sign)
 0x1B68	0x00B0	#	DEGREE SIGN
@@ -179,26 +195,26 @@
 0x1B6F	0x2019	#	RIGHT SINGLE QUOTATION MARK 
 0x1B70	0x26A0	#	WARNING SIGN (can be rendered in emoji style)
 0x1B71	0x221E	#	INFINITY
-0x1B72	0x00B2	#	SUPERSCRIPT TWO		(also CSI56:1m2CSI56m)
+0x1B72	0x00B2	#	SUPERSCRIPT TWO	(also CSI56:1m2CSI56m)
 0x1B73	0x00B3	#	SUPERSCRIPT THREE	(also CSI56:1m3CSI56m)
-0x1B75	0x0BFA	#	TAMIL NUMBER SIGN
+0x1B75	0x0BF9	#	TAMIL RUPEE SIGN
 0x1B76	0x0BF3	#	TAMIL DAY SIGN
 0x1B77	0x0BF4	#	TAMIL MONTH SIGN
-0x1B78	0x0BF5	#	TAMIL YEAR SIGN
-0x1B79	0x11FEE	#	TAMIL IN POSSESSION SIGN (two 16-bit codes in UTF-16: 0xD807 0xDFEE)
-0x1B7A	0x11FEF	#	TAMIL STARTING FROM SIGN (two 16-bit codes in UTF-16: 0xD807 0xDFEF)
-0x1B7B	0x11FF0	#	TAMIL SIGN MUTHALIYA (two 16-bit codes in UTF-16: 0xD807 0xDFF0)
-0x1B7C	0x11FF1	#	TAMIL SIGN VAKAIYARAA (two 16-bit codes in UTF-16: 0xD807 0xDFF1)
-0x1B7D	0x11FFF	#	TAMIL PUNCTUATION END OF TEXT (two 16-bit codes in UTF-16: 0xD807 0xDFFF)
-0x1B7E	0x0BF8	#	TAMIL AS ABOVE SIGN
+0x1B78	0x0BF5	#	TAMIL YEAR SIGN  (these are still found in traditional account books and documents)
+0x1B79	0x0BF8	#	TAMIL AS ABOVE SIGN
+0x1B7A	0x11FEE	#	TAMIL IN POSSESSION SIGN (two 16-bit codes in UTF-16: 0xD807 0xDFEE) historical
+0x1B7B	0x11FEF	#	TAMIL STARTING FROM SIGN (two 16-bit codes in UTF-16: 0xD807 0xDFEF) historical
+0x1B7C	0x11FF0	#	TAMIL SIGN MUTHALIYA (two 16-bit codes in UTF-16: 0xD807 0xDFF0) historical
+0x1B7D	0x11FF1	#	TAMIL SIGN VAKAIYARAA (two 16-bit codes in UTF-16: 0xD807 0xDFF1) historical
 0x1D	0x0B9C	#	TAMIL LETTER JA
 0x1F	0x0B9E	#	TAMIL LETTER NYA
 0x20	0x0020	#	SPACE
-0x21	0x0021	#	EXCLAMATION MARK
-0x22	0x0BA4	#	TAMIL LETTER TA
-0x23	0x0B9F	#	TAMIL LETTER TTA
-0x28	0x0028	#	LEFT PARENTHESIS
-0x29	0x0029	#	RIGHT PARENTHESIS
+0x21	0x0BA4	#	TAMIL LETTER TA
+0x22	0x0B9F	#	TAMIL LETTER TTA
+0x23	0x0023	#	NUMBER SIGN
+
+0x2A	0x002A	#	ASTERISK
+0x2B	0x002B	#	PLUS SIGN
 0x2C	0x002C	#	COMMA
 0x2D	0x0BA8	#	TAMIL LETTER NA
 0x2E	0x002E	#	FULL STOP
@@ -230,15 +246,11 @@
 0x4B	0x0BB7	#	TAMIL LETTER SSA
 0x4C	0x0BB6	#	TAMIL LETTER SHA
 0x4D	0x0BB9	#	TAMIL LETTER HA
-
 0x50	0x0BBE	#	TAMIL VOWEL SIGN AA
 0x51	0x0BBF	#	TAMIL VOWEL SIGN I
 0x52	0x0BC0	#	TAMIL VOWEL SIGN II
 0x53	0x0BC1	#	TAMIL VOWEL SIGN U
 0x54	0x0BC2	#	TAMIL VOWEL SIGN UU
-
-
-#0x57 (candra e)
 0x58	0x0BC6	#	TAMIL VOWEL SIGN E
 0x59	0x0BC7	#	TAMIL VOWEL SIGN EE
 0x5A	0x0BC8	#	TAMIL VOWEL SIGN AI
