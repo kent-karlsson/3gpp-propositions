@@ -86,7 +86,7 @@
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
 0x0B	0x03D9	#	GREEK SMALL LETTER ARCHAIC KOPPA (old shape)
 0x0C	0x03DF	#	GREEK SMALL LETTER KOPPA (modern shape)
-0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
+0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler in SMS/CBS/USSD and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission)
 0x0E	0x03D7	#	GREEK KAI SYMBOL (lowercase Greek "&")
 0x0F	0x03E1	#	GREEK SMALL LETTER SAMPI
 0x10	0x2212	#	MINUS SIGN
@@ -124,7 +124,7 @@
 0x1B19	0x0048	#	LATIN CAPITAL LETTER H
 0x1B1A	0x0343	#	COMBINING GREEK KORONIS	(0313,COMBINING COMMA ABOVE) (marks a vowel contracted by crasis; typographically identical to the smooth breathing mark)
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; must have spacing 'error indication' glyph, NOT invisible)
 0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
 0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0x03AA	#	GREEK CAPITAL LETTER IOTA WITH DIALYTIKA

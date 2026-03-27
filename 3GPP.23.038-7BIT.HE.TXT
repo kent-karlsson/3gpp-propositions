@@ -43,7 +43,8 @@
 #	and digits), thus for displaying messages in this encoding one
 #	must apply the bidi algorithm. The "paragraph level" parameter is
 #	always "LTR" for SMS/CBS messages. The bidi algoritnm is applied
-#	*after* submessage concatenation. LRM and RLM can be used to "fix"
+#	*after* submessage concatenation; 'external' CR must be converted
+#	to LF before submission. LRM and RLM can be used to "fix"
 #	bidi ordering issues for 'bidi neutral' symbols, like quote marks,
 #	comma, full stop, ... in case of 'order change' around the symbol.
 #
@@ -85,7 +86,7 @@
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
 0x0B	0x05B6	#	HEBREW POINT SEGOL (eh)
 0x0C	0x05B1	#	HEBREW POINT HATAF SEGOL
-0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
+0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler in SMS/CBS/USSD and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission)
 0x0E	0x05B2	#	HEBREW POINT HATAF PATAH
 0x0F	0x05B3	#	HEBREW POINT HATAF QAMATS
 0x10	0x2212	#	MINUS SIGN
@@ -109,7 +110,6 @@
 0x1B06	0xFB27	#	HEBREW LETTER WIDE RESH
 0x1B07	0xFB28	#	HEBREW LETTER WIDE TAV
 0x1B08	0xFB4F	#	HEBREW LIGATURE ALEF LAMED
-
 0x1B0A	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
 0x1B0D	0x009B	#	CONTROL SEQUENCE INTRODUCER (enable CSInnn_ decimal character references and selected CSIxxxm styling)
 0x1B0E	0x05EF	#	HEBREW YOD TRIANGLE
@@ -125,7 +125,7 @@
 0x1B19	0xFB32	#	HEBREW LETTER GIMEL WITH DAGESH
 0x1B1A	0xFB33	#	HEBREW LETTER DALET WITH DAGESH
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; must have spacing 'error indication' glyph, NOT invisible)
 0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
 0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0xFB34	#	HEBREW LETTER HE WITH MAPIQ
@@ -309,10 +309,8 @@
 0x78	0x0078	#	LATIN SMALL LETTER X
 0x79	0x0079	#	LATIN SMALL LETTER Y
 0x7A	0x007A	#	LATIN SMALL LETTER Z
-
 0x7B	0x060C	#	ARABIC COMMA
-0x7C	0x06D4	#	ARABIC FULL STOP
-
+0x7C	0x06D4	#	ARABIC FULL STOP ((Urdu...))
 0x7D	0x05BE	#	HEBREW PUNCTUATION MAQAF (Hebrew hyphen, looks like hyphen... though higher up)
 ### While zero-width, these should have visible glyphs; like a narrow bar with a ‘flag’ indicating direction.
 0x7E	0x200E	#	LEFT-TO-RIGHT MARK	(in particular for: to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no RTL char in the line)

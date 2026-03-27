@@ -73,7 +73,8 @@
 #	The bidi algorithm is applied if and only if there are 'strong'
 #	right-to-left chars in the message. The "paragraph level" parameter
 #	is always "LTR" for SMS/CBS messages. The bidi algoritnm is applied
-#	*after* submessage concatenation. LRM and RLM can be used to "fix"
+#	*after* submessage concatenation; 'external' CR must be converted
+#	to LF before submission. LRM and RLM can be used to "fix"
 #	bidi ordering issues for 'bidi neutral' symbols, like quote marks,
 #	comma, full stop, ... in case of 'order change' around the symbol.
 #	If the bidi algorithm is not applied, LRM and RLM are mapped to
@@ -105,7 +106,7 @@
 0x000A	0x000A	#	LINE FEED (interpret as ASCII CR,LF)
 0x000B	0x000A	#	LINE TABULATION (mapped to LF; VT is often used as LS, but for SMS/CBS we map LS to LF)
 0x000C	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
-0x000D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler (in the SMS/CBS protocols, text part) and those must be deleted before submessage concatenation; if strictly inside of submessage, map to LF); this handling is not reflected in this table
+0x000D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler (in the SMS/CBS protocols, text part) and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission; if strictly inside of submessage, map to LF); this handling is not reflected in this table
 0x000E..0x001F	0xFFFD	#	ctrls: mapped to repl. char
 0x007F	0xFFFD	#	ctrl: mapped to repl. char
 0x0080..0x009A	0xFFFD	#	ctrls: mapped to repl. char
@@ -113,6 +114,10 @@
 0x009C..0x00A0	0xFFFD	#	ctrls, NBSP: mapped to repl. char
 0x00AD	0x00AD	#	SOFT HYPHEN (this is a control character for hyphenation suggestion; if no hypehantion at this point, it should still have a non-spacing glyph in SMS, like a narrow vertical bar)
 0x061C	0x200F	#	ARABIC LETTER MARK to RIGHT-TO-LEFT MARK (AL->R)
+0x0132	0x0049 0x004A	#	LATIN CAPITAL LIGATURE IJ
+0x0133	0x0069 0x006A	#	LATIN SMALL LIGATURE IJ
+0x013F	0x004C 0x00B7	#	LATIN CAPITAL LETTER L WITH MIDDLE DOT
+0x0140	0x006C 0x00B7	#	LATIN SMALL LETTER L WITH MIDDLE DOT
 #0x1680	0x0020	#	OGHAM SPACE MARK (Zs) mapped to SP (repl. char?)
 0x2000..0x200B	0xFFFD	#	spaces of fixed width: mapped to repl. char
 0x200C	0x00B7	#	ZERO WIDTH NON-JOINER to MIDDLE DOT

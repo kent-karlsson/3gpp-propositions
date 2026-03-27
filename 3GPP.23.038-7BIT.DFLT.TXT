@@ -129,7 +129,7 @@
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF)
 0x0B	0x00D8	#	LATIN CAPITAL LETTER O WITH STROKE
 0x0C	0x00F8	#	LATIN SMALL LETTER O WITH STROKE
-0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
+0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler in SMS/CBS/USSD and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission)
 0x0E	0x00C5	#	LATIN CAPITAL LETTER A WITH RING ABOVE
 0x0F	0x00E5	#	LATIN SMALL LETTER A WITH RING ABOVE
 0x10	0x0394	#	GREEK CAPITAL LETTER DELTA
@@ -147,7 +147,7 @@
 0x1B0A	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
 0x1B14	0x005E	#	CIRCUMFLEX ACCENT
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B2C	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B2C	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; must have spacing 'error indication' glyph, NOT invisible)
 0x1B28	0x007B	#	LEFT CURLY BRACKET
 0x1B29	0x007D	#	RIGHT CURLY BRACKET
 0x1B2F	0x005C	#	REVERSE SOLIDUS

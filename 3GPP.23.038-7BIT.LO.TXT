@@ -67,7 +67,6 @@
 # @missing: 0x1B1C..0x1B7F	0xFFFD	#	SS2 -> REPLACEMENT CHARACTER
 # @missing: 0x1C..0x7F	0xFFFD	#	REPLACEMENT CHARACTER
 #
-#
 0x01	0x0ECD	#	LAO NIGGAHITA (VOWEL SIGN..., final nasal, anusvara)
 0x03	0x0E81	#	LAO LETTER KO
 0x04	0x0E82	#	LAO LETTER KHO SUNG
@@ -77,7 +76,7 @@
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
 0x0B	0x0E88	#	LAO LETTER CO
 0x0C	0x0E89	#	LAO LETTER PALI CHA (not in modern use)
-0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
+0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler in SMS/CBS/USSD and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission)
 0x0E	0x0E8A	#	LAO LETTER SO TAM
 0x10	0x0E8C	#	LAO LETTER PALI JHA (not in modern use)
 0x11	0x005F	#	LOW LINE
@@ -118,7 +117,7 @@
 0x1B19	0x0EAF	#	LAO ELLIPSIS (danda)
 0x1B1A	0x0E5A	#	THAI CHARACTER ANGKHANKHU (double danda; missing from the Lao encoding, using the Thai char)
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; must have spacing 'error indication' glyph, NOT invisible)
 0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
 0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0x0ED0	#	LAO DIGIT ZERO

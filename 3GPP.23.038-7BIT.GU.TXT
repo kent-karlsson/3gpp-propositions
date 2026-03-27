@@ -81,7 +81,7 @@
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
 0x0B	0x0A8C	#	GUJARATI LETTER VOCALIC L
 0x0C	0x0A8D	#	GUJARATI VOWEL CANDRA E
-0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
+0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler in SMS/CBS/USSD and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission)
 0x0E	0x0A8F	#	GUJARATI LETTER E (short e)
 0x10	0x0A90	#	GUJARATI LETTER AI
 0x11	0x005F	#	LOW LINE
@@ -120,7 +120,7 @@
 0x1B19	0x0964	#	DEVANAGARI DANDA
 0x1B1A	0x0965	#	DEVANAGARI DOUBLE DANDA
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; must have spacing 'error indication' glyph, NOT invisible)
 0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
 0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0x0AE6	#	GUJARATI DIGIT ZERO

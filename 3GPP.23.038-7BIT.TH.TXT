@@ -78,7 +78,7 @@
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
 0x0B	0x0E08	#	THAI CHARACTER CHO CHAN
 0x0C	0x0E09	#	THAI CHARACTER CHO CHING
-0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
+0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler in SMS/CBS/USSD and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission)
 0x0E	0x0E0A	#	THAI CHARACTER CHO CHANG
 0x0F	0x0E0B	#	THAI CHARACTER SO SO
 0x10	0x0E0C	#	THAI CHARACTER CHO CHOE
@@ -120,7 +120,7 @@
 0x1B19	0x0E2F	#	THAI CHARACTER PAIYANNOI (danda)
 0x1B1A	0x0E5A	#	THAI CHARACTER ANGKHANKHU (double danda)
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; must have spacing 'error indication' glyph, NOT invisible)
 0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
 0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0x0E50	#	THAI DIGIT ZERO
@@ -212,11 +212,9 @@
 0x26	0x0E1E	#	THAI CHARACTER PHO PHAN
 0x27	0x0E1F	#	THAI CHARACTER FO FAN
 0x28	0x0E20	#	THAI CHARACTER PHO SAMPHAO
-
 0x2A	0x002A	#	ASTERISK
 0x2B	0x002B	#	PLUS SIGN
 0x2C	0x002C	#	COMMA
-
 0x2E	0x002E	#	FULL STOP
 0x2F	0x002F	#	SOLIDUS
 0x30	0x0030	#	DIGIT ZERO

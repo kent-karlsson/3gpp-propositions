@@ -80,7 +80,7 @@
 0x09	0x0C8B	#	KANNADA LETTER VOCALIC R
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
 0x0B	0x0C8C	#	KANNADA LETTER VOCALIC L
-0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler and those must be deleted before submessage concatenation)
+0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler in SMS/CBS/USSD and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission)
 0x0E	0x0C8E	#	KANNADA LETTER E
 0x0F	0x0C8F	#	KANNADA LETTER EE
 0x10	0x0C90	#	KANNADA LETTER AI
@@ -121,7 +121,7 @@
 0x1B19	0x0964	#	DEVANAGARI DANDA
 0x1B1A	0x0965	#	DEVANAGARI DOUBLE DANDA
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
-0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; should have spacing 'error indication' glyph, NOT invisible)
+0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; must have spacing 'error indication' glyph, NOT invisible)
 0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
 0x1B1B2D	0x2010	#	HYPHEN
 0x1B1C	0x0CE6	#	KANNADA DIGIT ZERO
@@ -134,7 +134,7 @@
 0x1B23	0x0CED	#	KANNADA DIGIT SEVEN
 0x1B24	0x0CEE	#	KANNADA DIGIT EIGHT
 0x1B25	0x0CEF	#	KANNADA DIGIT NINE
-0x1B27	0x0CF1	#	KANNADA SIGN JIHVAMULIYA	Move?
+0x1B27	0x0CF1	#	KANNADA SIGN JIHVAMULIYA
 0x1B28	0x007B	#	LEFT CURLY BRACKET
 0x1B29	0x007D	#	RIGHT CURLY BRACKET
 0x1B2A	0x0CE7 0x2044 0x0CEA	#	KANNADA ¼
