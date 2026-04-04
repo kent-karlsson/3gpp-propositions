@@ -72,7 +72,7 @@
 0x05	0x10FB	#	GEORGIAN PARAGRAPH SEPARATOR (not separator; end of paragraph emphasiser; must be followed by LF, NEL, PS or end of text)
 0x06	0x058F	#	ARMENIAN DRAM SIGN
 0x07	0x20BE	#	LARI SIGN
-0x08	0x20B4	#	HRYVNIA SIGN;Sc;0;ET;;;;;N;;;;;
+0x08	0x20B4	#	HRYVNIA SIGN
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF)
 0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler in SMS/CBS/USSD and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission)
 0x10	0x2212	#	MINUS SIGN
