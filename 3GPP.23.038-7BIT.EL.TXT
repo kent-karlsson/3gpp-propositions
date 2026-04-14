@@ -1,13 +1,13 @@
 # 3GPP.23.038-7BIT.EL.TXT
-# Date: 2025-12-21
-# © 2025 Unicode®, Inc.
+# Date: 2026-04-15
+# © 2026 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 #	Name:             3GPP 23.038 7-bit for (monotonic) Greek alphabet (0x11) to Unicode
 #	Unicode version:  17.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2025 December 21
+#	Date:             2026 April 14
 #	Authors:          Kent Karlsson
 #
 #	General notes:
