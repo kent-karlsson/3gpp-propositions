@@ -203,7 +203,7 @@
 0x1B75	0x0C58	#	TELUGU LETTER TSA
 0x1B76	0x0C59	#	TELUGU LETTER DZA
 0x1B77	0x0C5A	#	TELUGU LETTER RRRA
-0x1B78	0x0C5D	#	TELUGU LETTER NAKAARA POLLU    (vowelless form of na)
+0x1B78	0x0C5D	#	TELUGU LETTER NAKAARA POLLU    (old vowelless form of na, modern: na+virama)
 0x1C	0x0C1B	#	TELUGU LETTER CHA
 0x1D	0x0C1C	#	TELUGU LETTER JA
 0x1E	0x0C1D	#	TELUGU LETTER JHA
@@ -244,7 +244,7 @@
 0x41	0x0C2D	#	TELUGU LETTER BHA
 0x42	0x0C2E	#	TELUGU LETTER MA
 0x43	0x0C2F	#	TELUGU LETTER YA
-0x44	0x0C30	#	TELUGU LETTER RA
+0x44	0x0C30	#	TELUGU LETTER RA	(do not use the reph form of RA in SMS/CBS messages (may need to use zwj+virama (instead of just virama) to form a "normal" conjunct in some fonts; in other texts Unicode says to use virama+zwj after ra to use the reph form)
 0x45	0x0C31	#	TELUGU LETTER RRA
 0x46	0x0C32	#	TELUGU LETTER LA
 0x47	0x0C33	#	TELUGU LETTER LLA
@@ -255,6 +255,7 @@
 0x4C	0x0C36	#	TELUGU LETTER SHA
 0x4D	0x0C39	#	TELUGU LETTER HA
 0x4E	0x0C3C	#	TELUGU SIGN NUKTA
+0x4F	0x0C4D 0x200C	#	TELUGU SIGN VIRAMA, ZERO WIDTH NON-JOINER   explicit/visible virama (may be preferred after ra to ensure non-reph form, using explicit virama)
 0x50	0x0C3E	#	TELUGU VOWEL SIGN AA
 0x51	0x0C3F	#	TELUGU VOWEL SIGN I
 0x52	0x0C40	#	TELUGU VOWEL SIGN II
@@ -270,7 +271,7 @@
 0x5C	0x0C4A	#	TELUGU VOWEL SIGN O
 0x5D	0x0C4B	#	TELUGU VOWEL SIGN OO
 0x5E	0x0C4C	#	TELUGU VOWEL SIGN AU
-0x5F	0x0C4D	#	TELUGU SIGN VIRAMA
+0x5F	0x0C4D	#	TELUGU SIGN VIRAMA  use subjoined form for the second consonant, ligated to the first consonant, explicit virama as fallback
 0x60	0x0C01	#	TELUGU SIGN CANDRABINDU (‘arasunna’)
 0x61	0x0061	#	LATIN SMALL LETTER A
 0x62	0x0062	#	LATIN SMALL LETTER B
@@ -298,3 +299,4 @@
 0x78	0x0078	#	LATIN SMALL LETTER X
 0x79	0x0079	#	LATIN SMALL LETTER Y
 0x7A	0x007A	#	LATIN SMALL LETTER Z
+0x7E	0x0970	#	DEVANAGARI ABBREVIATION SIGN

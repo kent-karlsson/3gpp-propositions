@@ -120,8 +120,8 @@
 0x0140	0x006C 0x00B7	#	LATIN SMALL LETTER L WITH MIDDLE DOT
 #0x1680	0x0020	#	OGHAM SPACE MARK (Zs) mapped to SP (repl. char?)
 0x2000..0x200B	0xFFFD	#	spaces of fixed width: mapped to repl. char
-0x200C	0x00B7	#	ZERO WIDTH NON-JOINER to MIDDLE DOT
-0x200D	0x0640	#	ZERO WIDTH JOINER to ARABIC TATWEEL
+#0x200C	0x00B7	#	ZERO WIDTH NON-JOINER to MIDDLE DOT		this mapping is only for when the surrounding characters are in the Arabic script (target 'alphabet': 0x13), in particular, do NOT do this mapping for Brahmic scripts when adjacnet to a virama
+#0x200D	0x0640	#	ZERO WIDTH JOINER to ARABIC TATWEEL		this mapping is only for when the surrounding characters are in the Arabic script (target 'alphabet': 0x13), in particular, do NOT do this mapping for Brahmic scripts when adjacnet to a virama
 ### While zero-width, these should have visible glyphs; like a narrow bar with a ‘flag’ indicating direction.
 0x200E	0x200E	#	LEFT-TO-RIGHT MARK	(to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no mix of spacing LTR and RTL chars in the line)
 0x200F	0x200F	#	RIGHT-TO-LEFT MARK	(to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no mix of spacing LTR and RTL chars in the line)
