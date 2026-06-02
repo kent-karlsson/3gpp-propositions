@@ -1,18 +1,18 @@
 # 3GPP.23.038-7BIT.UR.TXT
-# Date: 2026-04-15
+# Date: 2026-05-31
 # © 2026 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 #	Name:             3GPP 23.038 7-bit for Urdu (Eastern Arabic alphabet) (0x13) to Unicode
-#	Unicode version:  17.0.0
+#	Unicode version:  18.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2026 April 14
+#	Date:             2026 May 31
 #	Authors:          Kent Karlsson
 #
 #	General notes:
 #
-#	This mapping is based on 3GPP TS 23.038 V18.0.0 (2022-09), "3rd Generation
+#	This mapping is based on 3GPP TS 23.038 V19.0.0 (2025-10), "3rd Generation
 #	Partnership Project; Technical Specification Group Core Network and
 #	Terminals; Alphabets and language-specific information (Release 18)".
 #	Language code (Table 6.2.1.2.4.1) 0x13. Corrected and extended.
@@ -127,8 +127,8 @@
 0x1B16	0x0609	#	ARABIC-INDIC PER MILLE SIGN (assuming that the rings in ‰ are zeroes, but ‰ is just a telescoping of the % sign)
 0x1B17	0x0028	#	LEFT PARENTHESIS
 0x1B18	0x0029	#	RIGHT PARENTHESIS
-0x1B19	0x066B	#	ARABIC DECIMAL SEPARATOR (comma-like)
-0x1B1A	0x066C	#	ARABIC THOUSANDS SEPARATOR (looks very much like an ordinary comma)
+0x1B19	0x066B	#	ARABIC DECIMAL SEPARATOR (comma-like); these two are illconceived, too alike (on the other hand, also comma and full stop are alike...)
+0x1B1A	0x066C	#	ARABIC THOUSANDS SEPARATOR (looks very much like an ordinary comma; should it look more like inverted or turned comma?)
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
 0x1B1B1A	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; must have spacing 'error indication' glyph, NOT invisible)
 0x1B1B20	0x202F	#	NARROW NO-BREAK SPACE
@@ -227,13 +227,13 @@
 0x1B76	0x06C1	#	ARABIC LETTER HEH GOAL
 0x1B77	0x06C2	#	ARABIC LETTER HEH GOAL WITH HAMZA ABOVE     06C1 0654
 0x1B78	0x06BE	#	ARABIC LETTER HEH DOACHASHMEE
-0x1B79	0x064B	#	ARABIC FATHATAN
-0x1B7A	0x064D	#	ARABIC KASRATAN
-0x1B7B	0x064C	#	ARABIC DAMMATAN
-0x1B7C	0x0657	#	ARABIC INVERTED DAMMA
-0x1B7D	0x0658	#	ARABIC MARK NOON GHUNNA
-0x1B7E	0x0656	#	ARABIC SUBSCRIPT ALEF
-0x1B7F	0x0670	#	ARABIC LETTER SUPERSCRIPT ALEF
+0x1B79	0x0670	#	ARABIC LETTER SUPERSCRIPT ALEF (aa)
+0x1B7A	0x0656	#	ARABIC SUBSCRIPT ALEF (aa)
+0x1B7B	0x0657	#	ARABIC INVERTED DAMMA (uu, rare)
+0x1B7C	0x064B	#	ARABIC FATHATAN (an, rare)
+0x1B7D	0x064D	#	ARABIC KASRATAN (in, rare)
+0x1B7E	0x064C	#	ARABIC DAMMATAN (un, rare)
+0x1B7F	0x0652	#	ARABIC SUKUN (no vowel; not common to write)
 0x1C	0x068C	#	ARABIC LETTER DAHAL
 0x1D	0x0688	#	ARABIC LETTER DDAL
 0x1E	0x0689	#	ARABIC LETTER DAL WITH RING
@@ -297,12 +297,12 @@
 0x58	0x06CC	#	ARABIC LETTER FARSI YEH
 0x59	0x06D0	#	ARABIC LETTER E
 0x5A	0x06D2	#	ARABIC LETTER YEH BARREE
-0x5B	0x064E	#	ARABIC FATHA
-0x5C	0x0650	#	ARABIC KASRA
-0x5D	0x064F	#	ARABIC DAMMA
-0x5E	0x0651	#	ARABIC SHADDA
-0x5F	0x0653	#	ARABIC MADDAH ABOVE
-0x60	0x0652	#	ARABIC SUKUN
+0x5B	0x064E	#	ARABIC FATHA (a, (e))
+0x5C	0x0650	#	ARABIC KASRA (i)
+0x5D	0x064F	#	ARABIC DAMMA (u, (o))
+0x5E	0x0651	#	ARABIC SHADDA (long consonant...)
+0x5F	0x0653	#	ARABIC MADDAH ABOVE ((glottal stop+)aa)
+0x60	0x0658	#	ARABIC MARK NOON GHUNNA ('nasal n'), common
 0x61	0x0061	#	LATIN SMALL LETTER A
 0x62	0x0062	#	LATIN SMALL LETTER B
 0x63	0x0063	#	LATIN SMALL LETTER C
