@@ -1,5 +1,5 @@
 # GSM0338.TXT (3GPP.23.038-7BIT.OLDDFLT.TXT)
-# Date: 2026-04-15
+# Date: 2026-05-31
 # © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #

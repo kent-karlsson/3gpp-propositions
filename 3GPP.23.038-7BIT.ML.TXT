@@ -1,18 +1,18 @@
 # 3GPP.23.038-7BIT.ML.TXT
-# Date: 2026-04-15
+# Date: 2026-05-31
 # © 2026 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 #	Name:             3GPP 23.038 7-bit for Malayalam alphabet (0x18) to Unicode
-#	Unicode version:  17.0.0
+#	Unicode version:  18.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2026 April 14
+#	Date:             2026 May 31
 #	Authors:          Kent Karlsson
 #
 #	General notes:
 #
-#	This mapping is based on 3GPP TS 23.038 V18.0.0 (2022-09), "3rd Generation
+#	This mapping is based on 3GPP TS 23.038 V19.0.0 (2025-10), "3rd Generation
 #	Partnership Project; Technical Specification Group Core Network and
 #	Terminals; Alphabets and language-specific information (Release 18)".
 #	Language code (Table 6.2.1.2.4.1) 0x18.
@@ -146,6 +146,11 @@
 0x1B31	0x0D61	#	MALAYALAM LETTER VOCALIC LL
 0x1B32	0x0D44	#	MALAYALAM VOWEL SIGN VOCALIC RR
 0x1B33	0x0D63	#	MALAYALAM VOWEL SIGN VOCALIC LL
+
+0x1B34	0x0D70	#	MALAYALAM NUMBER TEN
+0x1B35	0x0D71	#	MALAYALAM NUMBER ONE HUNDRED
+0x1B36	0x0D72	#	MALAYALAM NUMBER ONE THOUSAND
+
 0x1B37	0x200C 0x0D4D	#	ZERO WIDTH NON-JOINER, MALAYALAM SIGN VIRAMA	prefer non-ligated form of conjunct (fallback to explicit virama)
 0x1B38	0x200D 0x0D4D	#	ZERO WIDTH JOINER, MALAYALAM SIGN VIRAMA		prefer conjunct/ligature/subjoined form (fallback to explicit virama)
 0x1B39	0x0D79	#	MALAYALAM DATE MARK
@@ -182,10 +187,8 @@
 0x1B58	0x0058	#	LATIN CAPITAL LETTER X
 0x1B59	0x0059	#	LATIN CAPITAL LETTER Y
 0x1B5A	0x005A	#	LATIN CAPITAL LETTER Z
-0x1B5B	0x0D3A	#	MALAYALAM LETTER TTTA
-0x1B5C	0x0D70	#	MALAYALAM NUMBER TEN
-0x1B5D	0x0D71	#	MALAYALAM NUMBER ONE HUNDRED
-0x1B5E	0x0D72	#	MALAYALAM NUMBER ONE THOUSAND
+
+
 0x1B5F	0x0D3C	#	MALAYALAM SIGN CIRCULAR VIRAMA (historical)   explicit/visible virama?
 0x1B60	0x00BC	#	VULGAR FRACTION ONE QUARTER
 0x1B61	0x00BD	#	VULGAR FRACTION ONE HALF
@@ -269,6 +272,7 @@
 0x4B	0x0D37	#	MALAYALAM LETTER SSA
 0x4C	0x0D36	#	MALAYALAM LETTER SHA
 0x4D	0x0D39	#	MALAYALAM LETTER HA
+0x4E	0x0D3A	#	MALAYALAM LETTER TTTA
 0x4F	0x0D4D 0x200C	#	MALAYALAM SIGN VIRAMA, ZERO WIDTH NON-JOINER   explicit/visible virama
 0x50	0x0D3E	#	MALAYALAM VOWEL SIGN AA
 0x51	0x0D3F	#	MALAYALAM VOWEL SIGN I

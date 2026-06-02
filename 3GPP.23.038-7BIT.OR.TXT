@@ -1,18 +1,18 @@
 # 3GPP.23.038-7BIT.OR.TXT
-# Date: 2026-04-15
+# Date: 2026-05-31
 # © 2026 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 #	Name:             3GPP 23.038 7-bit for Oriya/Odia alphabet (0x19) to Unicode
-#	Unicode version:  17.0.0
+#	Unicode version:  18.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2026 April 14
+#	Date:             2026 May 31
 #	Authors:          Kent Karlsson
 #
 #	General notes:
 #
-#	This mapping is based on 3GPP TS 23.038 V18.0.0 (2022-09), "3rd Generation
+#	This mapping is based on 3GPP TS 23.038 V19.0.0 (2025-10), "3rd Generation
 #	Partnership Project; Technical Specification Group Core Network and
 #	Terminals; Alphabets and language-specific information (Release 18)".
 #	Language code (Table 6.2.1.2.4.1) 0x19.
@@ -146,6 +146,10 @@
 0x1B31	0x0B61	#	ORIYA LETTER VOCALIC LL
 0x1B32	0x0B44	#	ORIYA VOWEL SIGN VOCALIC RR
 0x1B33	0x0B63	#	ORIYA VOWEL SIGN VOCALIC LL
+
+0x1B35	0x0B53	#	ORIYA SIGN DOT ABOVE	COMBINING
+0x1B36	0x0B54	#	ORIYA SIGN DOUBLE DOT ABOVE	COMBINING
+
 0x1B38	0x200D 0x0B4D	#	ZERO WIDTH JOINER, ORIYA SIGN VIRAMA		prefer subjoined form instead of conjunct (fallback to explicit virama); RA: no repha...
 0x1B3A	0x2248	#	ALMOST EQUAL TO
 0x1B3B	0x2260	#	NOT EQUAL TO

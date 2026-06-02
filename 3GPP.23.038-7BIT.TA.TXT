@@ -1,18 +1,18 @@
 # 3GPP.23.038-7BIT.TA.TXT
-# Date: 2026-04-15
+# Date: 2026-05-31
 # © 2026 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 #	Name:             3GPP 23.038 7-bit for Tamil alphabet (0x1B) to Unicode
-#	Unicode version:  17.0.0
+#	Unicode version:  18.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2026 April 14
+#	Date:             2026 May 31
 #	Authors:          Kent Karlsson
 #
 #	General notes:
 #
-#	This mapping is based on 3GPP TS 23.038 V18.0.0 (2022-09), "3rd Generation
+#	This mapping is based on 3GPP TS 23.038 V19.0.0 (2025-10), "3rd Generation
 #	Partnership Project; Technical Specification Group Core Network and
 #	Terminals; Alphabets and language-specific information (Release 18)".
 #	Language code (Table 6.2.1.2.4.1) 0x1B.
@@ -111,6 +111,7 @@
 0x1B12	0x003E	#	GREATER-THAN SIGN
 0x1B13	0x20B9	#	INDIAN RUPEE SIGN
 0x1B14	0x005E	#	CIRCUMFLEX ACCENT
+0x1B15	0x0BFA	#	TAMIL NUMBER SIGN
 0x1B17	0x0028	#	LEFT PARENTHESIS
 0x1B18	0x0029	#	RIGHT PARENTHESIS
 0x1B19	0x0964	#	DEVANAGARI DANDA	not used in Tamil?
@@ -138,6 +139,11 @@
 0x1B2D	0x2A7D	#	LESS-THAN OR SLANTED EQUAL TO
 0x1B2E	0x2A7E	#	GREATER-THAN OR SLANTED EQUAL TO
 0x1B2F	0x005C	#	REVERSE SOLIDUS
+
+0x1B34	0x0BF0	#	TAMIL NUMBER TEN
+0x1B35	0x0BF1	#	TAMIL NUMBER ONE HUNDRED
+0x1B36	0x0BF2	#	TAMIL NUMBER ONE THOUSAND
+
 0x1B3A	0x2248	#	ALMOST EQUAL TO
 0x1B3B	0x2260	#	NOT EQUAL TO
 0x1B3C	0x005B	#	LEFT SQUARE BRACKET
@@ -171,10 +177,7 @@
 0x1B58	0x0058	#	LATIN CAPITAL LETTER X
 0x1B59	0x0059	#	LATIN CAPITAL LETTER Y
 0x1B5A	0x005A	#	LATIN CAPITAL LETTER Z
-0x1B5B	0x0BFA	#	TAMIL NUMBER SIGN
-0x1B5C	0x0BF0	#	TAMIL NUMBER TEN
-0x1B5D	0x0BF1	#	TAMIL NUMBER ONE HUNDRED
-0x1B5E	0x0BF2	#	TAMIL NUMBER ONE THOUSAND
+
 0x1B60	0x00BC	#	VULGAR FRACTION ONE QUARTER
 0x1B61	0x00BD	#	VULGAR FRACTION ONE HALF
 0x1B62	0x00BE	#	VULGAR FRACTION THREE QUARTERS

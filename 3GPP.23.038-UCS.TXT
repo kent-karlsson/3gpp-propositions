@@ -1,13 +1,13 @@
 # 3GPP.23.038-UCS.TXT
-# Date: 2026-04-15
+# Date: 2026-05-31
 # © 2026 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 #	Name:             3GPP 23.038 Unicode (ISO/IEC 10646) (UCS) to Unicode for SMS/CBS
-#	Unicode version:  17.0.0
+#	Unicode version:  18.0.0
 #	Table version:    1.0
 #	Table format:     Format A
-#	Date:             2026 April 14
+#	Date:             2026 May 31
 #	Authors:          Kent Karlsson
 #
 #	General notes:
@@ -19,7 +19,7 @@
 #	For SMS/CBS UCS2(BE) to received text, after removing filler CRs, apply
 #	the mapping below (should be a no-op, sender should already have done that).
 #
-#	This mapping is based on 3GPP TS 23.038 V18.0.0 (2022-09), "3rd Generation
+#	This mapping is based on 3GPP TS 23.038 V19.0.0 (2025-10), "3rd Generation
 #	Partnership Project; Technical Specification Group Core Network and
 #	Terminals; Alphabets and language-specific information (Release 18)".
 #	UCS2 in 23.038 should be interpreted as UTF-16BE, not limited to BMP.
