@@ -1,16 +1,16 @@
-# GSM0338.TXT (3GPP.23.038-7BIT.OLDDFLT.TXT)
+# 3GPP.23.038-7BIT.DFLT.TXT (GSM0338.TXT)
 # Date: 2026-05-31
 # © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
-#	Name:             GSM 03.38 (3GPP 23.038) 7-bit default (Latin alphabet) (0x00) to Unicode
+#	Name:             3GPP 23.038 (GSM 03.38) 7-bit default (Latin alphabet) (0x00) to Unicode
 #	Unicode version:  3.0
 #	Table version:    3.0
 #	Table format:     Format A
-#	Date:             2009 Nov 10 (header updated: 2015 December 02; updated 2025 ....... )
+#	Date:             2009 Nov 10 (header updated: 2015 December 02; header/content updated 2026 June 22)
 #	Authors:          Ken Whistler
-#                         Kent Karlsson
-#                         Markus Kuhn
+#	                  Kent Karlsson
+#	                  Markus Kuhn
 #
 #	General notes:
 #
