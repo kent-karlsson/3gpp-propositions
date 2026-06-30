@@ -21,7 +21,7 @@
 #
 #	This mapping is based on 3GPP TS 23.038 V19.0.0 (2025-10), "3rd Generation
 #	Partnership Project; Technical Specification Group Core Network and
-#	Terminals; Alphabets and language-specific information (Release 18)".
+#	Terminals; Alphabets and language-specific information (Release 19)".
 #	UCS2 in 23.038 should be interpreted as UTF-16BE, not limited to BMP.
 #
 #	This is a "Unicode to Unicode mapping", and most characters are not
@@ -88,14 +88,14 @@
 #
 #	References:
 #
-#	Alpha - 3GPP TS 23.038 V18.0.0 [TO UPDATE],
-#		"Alphabets and language-specific information", 2022-09 [TO UPDATE].
+#	Alpha - 3GPP TS 23.038 V19.0.0,
+#		"Alphabets and language-specific information", 2025-10 [TO UPDATE].
 #
-#	SMS   - 3GPP TS 23.040 V18.0.0, 
-#		"Technical realization of the Short Message Service (SMS)", 2024-03.
+#	SMS   - 3GPP TS 23.040 V19.0.0, 
+#		"Technical realization of the Short Message Service (SMS)", 2025-10.
 #
-#	CBS   - 3GPP TS 23.041 V18.6.0, 
-#		"Technical realization of Cell Broadcast Service (CBS)", 2024-09.
+#	CBS   - 3GPP TS 23.041 V19.3.0, 
+#		"Technical realization of Cell Broadcast Service (CBS)", 2025-12.
 #
 # @missing: 0x0000..0x10FFFF; <self> if supported
 # @missing: 0x0000..0x10FFFF; 0xFFFD if not supported for SMS/CBS (not allocated, is Cf, is deprecated or is otherwise not implemented (e.g. no glygh in the font used for SMS/CBS))

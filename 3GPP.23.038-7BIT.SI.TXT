@@ -14,7 +14,7 @@
 #
 #	This mapping is based on 3GPP TS 23.038 V19.0.0 (2025-10), "3rd Generation
 #	Partnership Project; Technical Specification Group Core Network and
-#	Terminals; Alphabets and language-specific information (Release 18)".
+#	Terminals; Alphabets and language-specific information (Release 19)".
 #	Language code (Table 6.2.1.2.4.1) 0x16.
 #
 #	This 7-bit encoding (and mapping) should only be used in the context of
@@ -53,14 +53,17 @@
 #
 #	References:
 #
-#	Alpha - 3GPP TS 23.038 V18.0.0,
-#			"Alphabets and language-specific information", 2022-09.
+#	Alpha - 3GPP TS 23.038 V19.0.0,
+#			"Alphabets and language-specific information", 2025-10.
 #
-#	SMS   - 3GPP TS 23.040 V18.0.0, 
-#			"Technical realization of the Short Message Service (SMS)", 2024-03.
+#	SMS   - 3GPP TS 23.040 V19.0.0, 
+#			"Technical realization of the Short Message Service (SMS)", 2025-10.
 #
-#	CBS   - 3GPP TS 23.041 V18.6.0, 
-#			"Technical realization of Cell Broadcast Service (CBS)", 2024-09.
+#	CBS   - 3GPP TS 23.041 V19.3.0, 
+#			"Technical realization of Cell Broadcast Service (CBS)", 2025-12.
+#
+# The following is for a 7-bit context. For an 8-bit context, in the first column
+# read 0x00 as 0x1B, 0x1B00..0x1B7F as 0x80..0xFF and 0x1B1B00..0x1B1B7F as 0x9B00..0x9B7F.
 #
 # @missing: 0x00..0x1A	0xFFFD	#	REPLACEMENT CHARACTER (0x1B is SINGLE SHIFT TWO)
 # @missing: 0x1B00..0x1B1A	0xFFFD	#	SS2 -> REPLACEMENT CHARACTER (0x1B1B is SINGLE SHIFT THREE)
