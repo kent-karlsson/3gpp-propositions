@@ -12,11 +12,26 @@
 #
 #	General notes:
 #
-#	For source to SMS/CBS UCS2(BE) (UTF-16BE), first transform to NFC, then
-#	apply the mapping below (plus mapping CR to LF, see below). Then map to
-#	UTF-16BE (if not already in form), and apply CR fillers if needed.
+#	For source to SMS/CBS UCS2/UTF-16. The bit storage in SBS/CBS protocols
+#	is reverse, so BE or LE depends on exactly how the bit reveral is done:
+#	if 16-bit groups (of UCS2 SMS text) are reversed, the result is UTF-16BE;
+#	if 8-bit units (of UCS2 SMS text) are reversed: the result is UTF-16LE.
+#	(Note: 7-bit text has to be reversed in 7-bit groups, as detailed in the
+#	3GPP 23.038 standard; and 8-bit data (incl. text) has to be bit revered
+#	in 8-bit groups. In addition, the QAM-coding sends multiple bits in parallel.)
 #
-#	For SMS/CBS UCS2(BE) to received text, after removing filler CRs, apply
+#	The mapping process should be like this: first transform to NFC, then
+#	apply the mapping below (plus mapping CR to LF, see below). Then map to
+#	UTF-16, and apply CR fillers if needed. This mapping should also be done
+#	for "8-bit data characters" which should be UTF-8 (with each 8-bit unit
+#	bit reversed at the transver level). It should also be used prior to mapping
+#	from UCS to 7-bit character data according to the "alphabet" mappings. Then
+#	one may also need to break up certain composite characters to base character
+#	plus combining character, since some needed characters are available in
+#	the 7-bit alphabets in decomposed form rather than precomposed form (for
+#	code-space reasons).
+#
+#	For SMS/CBS UCS2/UTF-16 received text, after removing filler CRs, apply
 #	the mapping below (should be a no-op, sender should already have done that).
 #
 #	This mapping is based on 3GPP TS 23.038 V19.0.0 (2025-10), "3rd Generation

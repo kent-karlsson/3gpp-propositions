@@ -63,8 +63,9 @@
 #	CBS   - 3GPP TS 23.041 V19.3.0, 
 #			"Technical realization of Cell Broadcast Service (CBS)", 2025-12.
 #
-# The following is for a 7-bit context. For an 8-bit context, in the first column
-# read 0x00 as 0x1B, 0x1B00..0x1B7F as 0x80..0xFF and 0x1B1B00..0x1B1B7F as 0x9B00..0x9B7F.
+# The following is for a 7-bit context (SMS...). For an 8-bit context, in the first column
+# read 0x00 as 0x1B, 0x1B00..0x1B7F as 0x80..0xFF and 0x1B1B00..0x1B1B7F as 0x9B00..0x9B7F;
+# in addition do not use CR as filler, instead use 0x00 as string terminator and filler.
 #
 # @missing: 0x00..0x1A	0xFFFD	#	REPLACEMENT CHARACTER (0x1B is SINGLE SHIFT TWO)
 # @missing: 0x1B00..0x1B1A	0xFFFD	#	SS2 -> REPLACEMENT CHARACTER (0x1B1B is SINGLE SHIFT THREE)

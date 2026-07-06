@@ -12,14 +12,21 @@
 #	                  Kent Karlsson
 #	                  Markus Kuhn
 #
+#	This table is deprecated for lingusitic texts in the Latin script.
+#	Use only for internal 3GPP processes (using USSD), like tele-controls
+#	(*#21#, ...), NAS, two-(lowercase)letter language codes in CBS, ...
+#	For linguistic text (SMS messages) in the Latin script, use instead EUR (0x10).
+#	For linguistic text (SMS messages) in the Greek script, use instead EL (0x11).
+#
 #	General notes:
 #
 #	This table contains the data the Unicode Consortium has on how
 #	ETSI GSM 03.38 (now 3GPP 03.038) 7-bit default alphabet characters
 #	map into Unicode. This mapping is based on ETSI TS 100 900 V7.2.0
-#	(1999-07), appears unchanged in 3GPP 03.038 v18.0.0 (2022-09), with
-#	a correction of 0x09 to *small* c-cedilla, instead of *capital*
-#	C-cedilla.
+#	(1999-07), appears unchanged in 3GPP 03.038 v19.0.0 (2025-10). But
+#	here with a correction of 0x09 to *small* c-cedilla, instead of
+#	*capital* C-cedilla. This correction has been in this mapping file
+#	since 2009.
 #
 #	Format:  Three tab-separated columns
 #		 Column #1 is the ETSI GSM 03.38 7-bit default alphabet 
