@@ -129,7 +129,7 @@
 0x1B1B01	0x009B 0x0032 0x0032 0x006D	#	CSI 22m, normal weight (CSI 1:400, OpenType weight 400)
 0x1B1B02	0x009B 0x0033 0x006D	#	CSI 3m, italic (if seriffed), oblique/slanted (if sans-serif or tt)
 0x1B1B03	0x009B 0x0032 0x0033 0x006D	#	CSI 23m, upright/roman
-0x1B1B04	0x009B 0x0035 0x0036 : 0x0031 0x006D	#	CSI 56:1m, 'superscript' (one level, NOT math); autoreset at SP/LF/symbol/punct.; if just before a symbol/punct the reset is 'delayed' to just after the symbol/punct.
+0x1B1B04	0x009B 0x0035 0x0036 0x003A 0x0031 0x006D	#	CSI 56:1m, 'superscript' (one level, NOT math); autoreset at SP/LF/symbol/punct.; if just before a symbol/punct the reset is 'delayed' to just after the symbol/punct.
 0x1B1B05	0x009B 0x0035 0x0036 0x006D	#	CSI 56m, non-superscript
 0x1B1B06	0x009B 0x0034 0x006D	#	CSI 4m, (single) underlined (normal weight...)
 0x1B1B07	0x009B 0x0032 0x0034 0x006D	#	CSI 24m, not underlined
