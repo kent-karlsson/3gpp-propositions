@@ -82,8 +82,8 @@
 0x1B0A	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
 0x1B0D	0x009B	#	CONTROL SEQUENCE INTRODUCER (enable CSInnn_ decimal character references and selected CSIxxxm styling)
 0x1B14	0x005E	#	CIRCUMFLEX ACCENT
-0x1B19	0x0964	#	DEVANAGARI DANDA
-0x1B1A	0x0965	#	DEVANAGARI DOUBLE DANDA
+0x1B19	0x1C7E	#	OL CHIKI PUNCTUATION MUCAAD
+0x1B1A	0x1C7F	#	OL CHIKI PUNCTUATION DOUBLE MUCAAD
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
 0x1B1B00	0x009B 0x0031 0x006D	#	CSI 1m, medium bold (CSI 1:700m, OpenType weight 700)
 0x1B1B01	0x009B 0x0032 0x0032 0x006D	#	CSI 22m, normal weight (CSI 1:400, OpenType weight 400)
@@ -321,6 +321,4 @@ sat	Santali
 
 
 
-1C7E;OL CHIKI PUNCTUATION MUCAAD;Po;0;L;;;;;N;;;;;
-1C7F;OL CHIKI PUNCTUATION DOUBLE MUCAAD;Po;0;L;;;;;N;;;;;
 
