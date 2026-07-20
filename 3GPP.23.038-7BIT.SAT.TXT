@@ -75,6 +75,8 @@
 0x04	0x00A7	#	SECTION SIGN
 0x0A	0x000A	#	LINE FEED (interpret as ASCII CR,LF; so this is actually NEL, but NEL is rarely implemented)
 0x0D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler in SMS/CBS/USSD and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission)
+0x0E	0x1C7C	#	OL CHIKI PHAARKAA   COMBINING  (glottalisation protector for initial (medial?) consonant (they are otherwise implicitly deglottalised))
+0x0F	0x1C7D	#	OL CHIKI AHAD   COMBINING (deglottalisation for final consonant (they are otherwise implicitly glottalised))
 0x10	0x2212	#	MINUS SIGN
 0x11	0x005F	#	LOW LINE
 0x13	0x20B9	#	INDIAN RUPEE SIGN
@@ -208,6 +210,10 @@
 0x1B71	0x221E	#	INFINITY
 0x1B72	0x00B2	#	SUPERSCRIPT TWO	(also CSI56:1m2CSI56m)
 0x1B73	0x00B3	#	SUPERSCRIPT THREE	(also CSI56:1m3CSI56m)
+0x1C	0x1C78	#	OL CHIKI MU TTUDDAG   COMBINING (vowel letter extension mechanism, but not nasalisation)
+0x1D	0x1C79	#	OL CHIKI GAAHLAA TTUDDAAG    COMBINING (nasalization of vowel)
+0x1E	0x1C7A	#	OL CHIKI MU-GAAHLAA TTUDDAAG    COMBINING (nasalised extended vowel; a combination of MU TTUDDAG followed by GAAHLA TTUDDAAG)
+0x1F	0x1C7B	#	OL CHIKI RELAA   COMBINING (vowel length mark; if used together with a TTUDDAG, the RELAA follows the TTUDDAG)
 0x20	0x0020	#	SPACE
 0x21	0x0021	#	EXCLAMATION MARK
 0x22	0x0022	#	QUOTATION MARK
@@ -270,7 +276,6 @@
 0x5B	0x1C75	#	OL CHIKI LETTER OB
 0x5C	0x1C76	#	OL CHIKI LETTER OV
 0x5D	0x1C77	#	OL CHIKI LETTER OH
-0x5F	0x1C7D	#	OL CHIKI AHAD   COMBINING (not formally, but close enough, modifier letter)
 0x61	0x0061	#	LATIN SMALL LETTER A
 0x62	0x0062	#	LATIN SMALL LETTER B
 0x63	0x0063	#	LATIN SMALL LETTER C
@@ -297,28 +302,3 @@
 0x78	0x0078	#	LATIN SMALL LETTER X
 0x79	0x0079	#	LATIN SMALL LETTER Y
 0x7A	0x007A	#	LATIN SMALL LETTER Z
-0x7B	0x1C78	#	OL CHIKI MU TTUDDAG   COMBINING
-0x7C	0x1C79	#	OL CHIKI GAAHLAA TTUDDAAG    COMBINING
-0x7D	0x1C7A	#	OL CHIKI MU-GAAHLAA TTUDDAAG    COMBINING
-0x7E	0x1C7B	#	OL CHIKI RELAA   COMBINING
-0x7F	0x1C7C	#	OL CHIKI PHAARKAA   COMBINING
-
-
-
-
-
-
-
-
-
-##Santali	sat-Olck	Ol Chiki script
-
-sat	Santali
-	ᱚ	ᱛ	ᱜ	ᱝ	ᱞ	ᱟ	ᱠ	ᱡ	ᱢ	ᱣ	ᱤ	ᱥ	ᱦ	ᱧ	ᱨ
-	ᱩ	ᱪ	ᱫ	ᱬ	ᱭ	ᱮ	ᱯ	ᱰ	ᱱ	ᱲ	ᱳ	ᱴ	ᱵ	ᱶ	ᱷ
-	ᱸ	ᱹ	ᱺ	ᱻ	ᱼ	ᱽ
-
-
-
-
-
