@@ -176,6 +176,39 @@
 ##ZERO WIDTH SPACE(LINE BREAK PERMITTED HERE), SOFT HYPHEN?
 0x1B1B3D	0x2010	#	HYPHEN (true hyphen; cmp. HYPHEN-MINUS)
 0x1B1B3F	0xFFFD	#	REPLACEMENT CHARACTER (duplicate of the ASCII 0x1C SUBSTITUTE; must have spacing 'error indication' glyph, NOT invisible)
+# lunar month-day symbols
+0x1B1B60	0x19E0	#	KHMER SYMBOL PATHAMASAT
+0x1B1B61	0x19E1	#	KHMER SYMBOL MUOY KOET
+0x1B1B62	0x19E2	#	KHMER SYMBOL PII KOET
+0x1B1B63	0x19E3	#	KHMER SYMBOL BEI KOET
+0x1B1B64	0x19E4	#	KHMER SYMBOL BUON KOET
+0x1B1B65	0x19E5	#	KHMER SYMBOL PRAM KOET
+0x1B1B66	0x19E6	#	KHMER SYMBOL PRAM-MUOY KOET
+0x1B1B67	0x19E7	#	KHMER SYMBOL PRAM-PII KOET
+0x1B1B68	0x19E8	#	KHMER SYMBOL PRAM-BEI KOET
+0x1B1B69	0x19E9	#	KHMER SYMBOL PRAM-BUON KOET
+0x1B1B6A	0x19EA	#	KHMER SYMBOL DAP KOET
+0x1B1B6B	0x19EB	#	KHMER SYMBOL DAP-MUOY KOET
+0x1B1B6C	0x19EC	#	KHMER SYMBOL DAP-PII KOET
+0x1B1B6D	0x19ED	#	KHMER SYMBOL DAP-BEI KOET
+0x1B1B6E	0x19EE	#	KHMER SYMBOL DAP-BUON KOET
+0x1B1B6F	0x19EF	#	KHMER SYMBOL DAP-PRAM KOET
+0x1B1B70	0x19F0	#	KHMER SYMBOL TUTEYASAT
+0x1B1B71	0x19F1	#	KHMER SYMBOL MUOY ROC
+0x1B1B72	0x19F2	#	KHMER SYMBOL PII ROC
+0x1B1B73	0x19F3	#	KHMER SYMBOL BEI ROC
+0x1B1B74	0x19F4	#	KHMER SYMBOL BUON ROC
+0x1B1B75	0x19F5	#	KHMER SYMBOL PRAM ROC
+0x1B1B76	0x19F6	#	KHMER SYMBOL PRAM-MUOY ROC
+0x1B1B77	0x19F7	#	KHMER SYMBOL PRAM-PII ROC
+0x1B1B78	0x19F8	#	KHMER SYMBOL PRAM-BEI ROC
+0x1B1B79	0x19F9	#	KHMER SYMBOL PRAM-BUON ROC
+0x1B1B7A	0x19FA	#	KHMER SYMBOL DAP ROC
+0x1B1B7B	0x19FB	#	KHMER SYMBOL DAP-MUOY ROC
+0x1B1B7C	0x19FC	#	KHMER SYMBOL DAP-PII ROC
+0x1B1B7D	0x19FD	#	KHMER SYMBOL DAP-BEI ROC
+0x1B1B7E	0x19FE	#	KHMER SYMBOL DAP-BUON ROC
+0x1B1B7F	0x19FF	#	KHMER SYMBOL DAP-PRAM ROC
 0x1B1C	0x17E0	#	KHMER DIGIT ZERO
 0x1B1D	0x17E1	#	KHMER DIGIT ONE
 0x1B1E	0x17E2	#	KHMER DIGIT TWO
@@ -202,7 +235,7 @@
 #0x1B33
 0x1B36	0x17CE	#	KHMER SIGN KAKABAT (MAI )
 0x1B37	0x17CF	#	KHMER SIGN AHSDA (MAI )
-0x1B38	0x17DD	#	KHMER SIGN ATTHACAN (MAI )  (rarely used sign that denotes that the base consonant character keeps its inherent vowel sound)
+0x1B38	0x17DD	#	KHMER SIGN ATTHACAN (MAI ) (rarely used sign that denotes that the base consonant character keeps its inherent vowel sound)
 0x1B39	0x17D6	#	KHMER SIGN CAMNUC PII KUUH * functions as colon
 0x1B3A	0x2248	#	ALMOST EQUAL TO
 0x1B3B	0x2260	#	NOT EQUAL TO
@@ -306,8 +339,8 @@
 0x43	0x1797	#	KHMER LETTER PHO
 0x44	0x1798	#	KHMER LETTER MO
 0x45	0x1799	#	KHMER LETTER YO
-0x46	0x179A	#	KHMER LETTER RO
-0x47	0x17CC	#	KHMER SIGN ROBAT (MAI )   repha...  (logical order exception?)
+0x46	0x179A	#	KHMER LETTER RO	'subscript' form is actually mostly to the left of the preceeding consonant (like a reordrant vowel mark)
+0x47	0x17CC	#	KHMER SIGN ROBAT (MAI )   (move to 0x1B32?)  repha...  (logical order exception?) (not in modern use)
 0x48	0x179B	#	KHMER LETTER LO
 0x49	0x17A1	#	KHMER LETTER LA
 0x4A	0x179C	#	KHMER LETTER VO
@@ -315,7 +348,7 @@
 0x4C	0x179E	#	KHMER LETTER SSO
 0x4D	0x179D	#	KHMER LETTER SHA
 0x4E	0x17A0	#	KHMER LETTER HA
-0x4F	0x17D1	#	KHMER SIGN VIRIAM (VIRAMA)
+0x4F	0x17D1	#	KHMER SIGN VIRIAM (VIRAMA) (mostly obsolete, a "killer"; indicates that the base character is the (final?) consonant of a word without its inherent vowel sound; can it rendered like a preconsonant-cluster large capital C?)
 0x50	0x17B6	#	KHMER VOWEL SIGN AA
 0x51	0x17B7	#	KHMER VOWEL SIGN I
 0x52	0x17B8	#	KHMER VOWEL SIGN II
@@ -331,7 +364,7 @@
 #0x5C	0x17DF	#	unallocated code point; AU LENGHT MARK (candra o)
 0x5D	0x17C4	#	KHMER VOWEL SIGN OO   17C1+17B6
 0x5E	0x17C5	#	KHMER VOWEL SIGN AU   17C1+[17DF]  with AU LENGHT MARK (candra o)
-0x5F	0x17D2	#	KHMER SIGN COENG (VIRAMA)  	effectively ZERO WIDTH JOINER, KHMER SIGN VIRIAM... (call for subjoined form); show as KHMER SIGN VIRIAM on preceeding char if not between two Khmer consonants, or three or more consonants in the cluster...
+0x5F	0x17D2	#	KHMER SIGN COENG (VIRAMA)  	(effectively ZERO WIDTH JOINER, KHMER SIGN VIRIAM...) (call for subjoined form); show as KHMER SIGN VIRIAM on preceeding char if not between two Khmer consonants (the first of which may be a consonant+vowel, or even an independent vowel, even the second one may rarely be an independent vowel), or when there is more than three consonants in the cluster...
 0x60	0x17CB	#	KHMER SIGN BANTOC (MAI ) (bantak) (final virama, "shortens" (to nothing...?) the inherent vowel), similar to viriam
 0x61	0x0061	#	LATIN SMALL LETTER A
 0x62	0x0062	#	LATIN SMALL LETTER B
