@@ -339,7 +339,7 @@
 0x43	0x1797	#	KHMER LETTER PHO
 0x44	0x1798	#	KHMER LETTER MO
 0x45	0x1799	#	KHMER LETTER YO
-0x46	0x179A	#	KHMER LETTER RO	'subscript' form is actually mostly to the left of the preceeding consonant (like a reordrant vowel mark)
+0x46	0x179A	#	KHMER LETTER RO	'subscript'/coeng form is mostly to the left of the preceeding consonant (like a reordrant vowel mark); coeng form can be used like a word final viriam?
 0x47	0x17CC	#	KHMER SIGN ROBAT (MAI )   (move to 0x1B32?)  repha...  (logical order exception?) (not in modern use)
 0x48	0x179B	#	KHMER LETTER LO
 0x49	0x17A1	#	KHMER LETTER LA
@@ -348,7 +348,7 @@
 0x4C	0x179E	#	KHMER LETTER SSO
 0x4D	0x179D	#	KHMER LETTER SHA
 0x4E	0x17A0	#	KHMER LETTER HA
-0x4F	0x17D1	#	KHMER SIGN VIRIAM (VIRAMA) (mostly obsolete, a "killer"; indicates that the base character is the (final?) consonant of a word without its inherent vowel sound; can it rendered like a preconsonant-cluster large capital C?)
+0x4F	0x17D1	#	KHMER SIGN VIRIAM (VIRAMA) (mostly obsolete, does not form conjuncts)
 0x50	0x17B6	#	KHMER VOWEL SIGN AA
 0x51	0x17B7	#	KHMER VOWEL SIGN I
 0x52	0x17B8	#	KHMER VOWEL SIGN II
@@ -364,8 +364,8 @@
 #0x5C	0x17DF	#	unallocated code point; AU LENGHT MARK (candra o)
 0x5D	0x17C4	#	KHMER VOWEL SIGN OO   17C1+17B6
 0x5E	0x17C5	#	KHMER VOWEL SIGN AU   17C1+[17DF]  with AU LENGHT MARK (candra o)
-0x5F	0x17D2	#	KHMER SIGN COENG (VIRAMA)  	(effectively ZERO WIDTH JOINER, KHMER SIGN VIRIAM...) (call for subjoined form); show as KHMER SIGN VIRIAM on preceeding char if not between two Khmer consonants (the first of which may be a consonant+vowel, or even an independent vowel, even the second one may rarely be an independent vowel), or when there is more than three consonants in the cluster...
-0x60	0x17CB	#	KHMER SIGN BANTOC (MAI ) (bantak) (final virama, "shortens" (to nothing...?) the inherent vowel), similar to viriam
+0x5F	0x17D2	#	KHMER SIGN COENG (VIRAMA)  (call for subjoined form of followon Khmer char); show as KHMER SIGN VIRIAM on preceeding char (or Khmer cluster) if subjoined form cannot be formed
+0x60	0x17CB	#	KHMER SIGN BANTOC (MAI ) (bantak) (shortens the inherent vowel)
 0x61	0x0061	#	LATIN SMALL LETTER A
 0x62	0x0062	#	LATIN SMALL LETTER B
 0x63	0x0063	#	LATIN SMALL LETTER C
