@@ -122,7 +122,7 @@
 0x000B	0x000A	#	LINE TABULATION (mapped to LF; VT is often used as LS, but for SMS/CBS we map LS to LF)
 0x000C	0x000C	#	FORM FEED (interpret as ASCII CR,FF if there is pagination; CR,LF if no pagination)
 0x000D	0x000D	#	CARRIAGE RETURN (note that CR is used as filler (in the SMS/CBS protocols, text part) and those must be deleted before submessage concatenation; 'external' CR must be converted to LF before submission; if strictly inside of submessage, map to LF); this handling is not reflected in this table
-0x000E..0x001F	0xFFFD	#	ctrls: mapped to repl. char
+0x000E..0x0019	0xFFFD	#	ctrls: mapped to repl. char
 0x007F	0xFFFD	#	ctrl: mapped to repl. char
 0x0080..0x009A	0xFFFD	#	ctrls: mapped to repl. char
 0x009B	0x009B	#	CONTROL SEQUENCE INTRODUCER (for selected CSIxxxm styling: bold, italic, (single) underline, a few colours)
@@ -154,9 +154,60 @@
 0x2060..0x2064	0xFFFD	#	(invisible operators are inappropriate in SMS/CBS) 
 0x2066..0x2068	0x005B 0xFFFD	#	LEFT-TO-RIGHT ISOLATE..FIRST STRONG ISOLATE, bidi controls, not for SMS/CBS
 0x2069	0xFFFD 0x005D	#	POP DIRECTIONAL ISOLATE, bidi control, not for SMS/CBS
-0x206A..0x206F	0xFFFD	INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES, these should always be replaced by SUB/REPL.CHAR. regardless of context
+0x206A..0x206F	0xFFFD	#	INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES, these should always be replaced by SUB/REPL.CHAR. regardless of context
 0xD800..0xDFFF	0xFFFD	#	(inappropriately used 'surrogate', these are always errors)
-0xE000..0xF8FF	0xFFFD	#	(private use characters are inappropriate in SMS/CBS)
+0xE000..0xF7FF	0xFFFD	#	(private use characters are inappropriate in SMS/CBS)
+##except... 3GPP private use of some PUA code points for short forms for styling control sequences; cmp. the short forms defined in the SS3 tables for 7-bit alphabets
+0xF800	0x009B 0x0031 0x006D	#	CSI 1m, medium bold (CSI 1:700m, OpenType weight 700)
+0xF801	0x009B 0x0032 0x0032 0x006D	#	CSI 22m, normal weight (CSI 1:400, OpenType weight 400)
+0xF802	0x009B 0x0033 0x006D	#	CSI 3m, italic (if seriffed), oblique/slanted (if sans-serif or tt)
+0xF803	0x009B 0x0032 0x0033 0x006D	#	CSI 23m, upright/roman
+0xF804	0x009B 0x0035 0x0036 0x003A 0x0031 0x006D	#	CSI 56:1m, 'superscript' (one level, NOT math); autoreset at SP/LF/symbol/punct.; if just before a symbol/punct the reset is 'delayed' to just after the symbol/punct.
+0xF805	0x009B 0x0035 0x0036 0x006D	#	CSI 56m, non-superscript
+0xF806	0x009B 0x0034 0x006D	#	CSI 4m, (single) underlined (normal weight...)
+0xF807	0x009B 0x0032 0x0034 0x006D	#	CSI 24m, not underlined
+0xF808	0x009B 0x0039 0x006D	#	CSI 9m, single strike-through (normal weight...)
+0xF809	0x009B 0x0032 0x0039 0x006D	#	CSI 29m, no strike-through
+0xF80A	0x009B 0x0037 0x0037 0x003A 0x0030 0x003F 0x0038 0x006D	#	CSI 77:0?8m, slightly smaller than default font size (0.8)
+0xF80B	0x009B 0x0037 0x0037 0x006D	#	CSI 77m, default font size (implementation defined; ofc. can be a preference setting)
+0xF80C	0x009B 0x0037 0x0037 0x003A 0x0031 0x003F 0x0032 0x006D	#	CSI 77:1?2m, slightly larger than default font size (1.2)
+0xF80D	0x009B 0x0037 0x0037 0x003A 0x0031 0x003F 0x0034 0x006D	#	CSI 77:1?4m, somewhat larger still font size (1.4)
+0xF80E	0x009B 0x0032 0x0036 0x003A 0x0031 0x006D	#	CSI 26:1m, a serifed proportional font (implementation defined which one)
+0xF80F	0x009B 0x0032 0x0036 0x003A 0x0032 0x006D	#	CSI 26:2m, a sans-serif proportional font (implementation defined which one)
+0xF810	0x009B 0x0034 0x0030 0x006D	#	CSI 40m, pure black "marker pen" (may be a bit transparent)
+0xF811	0x009B 0x0034 0x0031 0x006D	#	CSI 41m, dull/dark red "marker pen" (may be a bit transparent)
+0xF812	0x009B 0x0034 0x0032 0x006D	#	CSI 42m, dull/dark green "marker pen" (may be a bit transparent)
+0xF813	0x009B 0x0034 0x0033 0x006D	#	CSI 43m, dull/dark yellow "marker pen" (may be a bit transparent)
+0xF814	0x009B 0x0034 0x0034 0x006D	#	CSI 44m, dull/dark blue "marker pen" (may be a bit transparent)
+0xF815	0x009B 0x0034 0x0035 0x006D	#	CSI 45m, dull/dark magenta "marker pen" (may be a bit transparent)
+0xF816	0x009B 0x0034 0x0036 0x006D	#	CSI 46m, dull/dark cyan "marker pen" (may be a bit transparent)
+0xF817	0x009B 0x0034 0x0037 0x006D	#	CSI 47m, pure white "marker pen" (may be a bit transparent)
+0xF818	0x009B 0x0034 0x0039 0x006D	#	CSI 49m, fully transparent (default), no "marker pen"
+0xF819	0x009B 0x0031 0x0030 0x0030 0x006D	#	CSI 100m, dark grey "marker pen" (may be a bit transparent)
+0xF81A	0x009B 0x0031 0x0030 0x0034 0x006D	#	CSI 104m, clear blue "marker pen" (may be a bit transparent)
+0xF81B	0x009B 0x0031 0x0030 0x0036 0x006D	#	CSI 106m, clear cyan "marker pen" (may be a bit transparent)
+0xF81C	0x009B 0x0031 0x0030 0x0037 0x006D	#	CSI 107m, light grey "marker pen" (may be a bit transparent)
+0xF81D	0x009B 0x0031 0x0030 0x0038 0x006D	#	CSI 108m, medium grey "marker pen" (may be a bit transparent)
+0xF81E	0x009B 0x0031 0x0030 0x0039 0x006D	#	CSI 109m, orange "marker pen" (may be a bit transparent)
+0xF81F	0x009B 0x0032 0x0036 0x006D	#	CSI 26m, a proportional font (implementation defined which one), default font
+0xF820	0x009B 0x0033 0x0030 0x006D	#	CSI 30m, pure black text
+0xF821	0x009B 0x0033 0x0031 0x006D	#	CSI 31m, dull/dark red text
+0xF822	0x009B 0x0033 0x0032 0x006D	#	CSI 32m, dull/dark green text
+0xF823	0x009B 0x0033 0x0033 0x006D	#	CSI 33m, dull/dark yellow text
+0xF824	0x009B 0x0033 0x0034 0x006D	#	CSI 34m, dull/dark blue text
+0xF825	0x009B 0x0033 0x0035 0x006D	#	CSI 35m, dull/dark magenta text
+0xF826	0x009B 0x0033 0x0036 0x006D	#	CSI 36m, dull/dark cyan text
+0xF827	0x009B 0x0033 0x0037 0x006D	#	CSI 37m, pure white text
+0xF828	0x009B 0x0033 0x0039 0x006D	#	CSI 39m, default text colour (implementation defined)
+0xF829	0x009B 0x0039 0x0030 0x006D	#	CSI 90m, dark grey text
+0xF82A	0x009B 0x0039 0x0034 0x006D	#	CSI 94m, clear blue text
+0xF82B	0x009B 0x0039 0x0036 0x006D	#	CSI 96m, clear cyan text
+0xF82C	0x009B 0x0039 0x0037 0x006D	#	CSI 97m, light grey text
+0xF82D	0x009B 0x0039 0x0038 0x006D	#	CSI 98m, medium grey text
+0xF82E	0x009B 0x0039 0x0039 0x006D	#	CSI 99m, orange text
+0xF82F	0x009B 0x0035 0x0030 0x006D	#	CSI 50m, a typewriter style font ("fixed width") (implementation defined which one)
+0xF830..0xF8FF	0xFFFD	#	(private use characters are inappropriate in SMS/CBS)
+0xFB50..0xFBFF	0xFFFD	#	Arabic presentation forms (use the nominal letters and the shaping algorithm instead)  TODO: map "arabic ill-defined punctuation" to appropriate punctuation
 0xFDD0..0xFDEF	0xFFFD	#	map <OBJECT REPLACEMENT> to REPLACEMENT CHARACTER
 0xFEFF	0xFFFD	#	there must be no BOM in SMS/CBS
 0xFFFC	0xFFFD	#	map OBJECT REPLACEMENT CHARACTER to REPLACEMENT CHARACTER
