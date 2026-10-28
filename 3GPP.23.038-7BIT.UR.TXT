@@ -131,8 +131,8 @@
 0x1B16	0x0609	#	ARABIC-INDIC PER MILLE SIGN (assuming that the rings in ‰ are zeroes, but ‰ is just a telescoping of the % sign)
 0x1B17	0x0028	#	LEFT PARENTHESIS
 0x1B18	0x0029	#	RIGHT PARENTHESIS
-0x1B19	0x066B	#	ARABIC DECIMAL SEPARATOR (comma-like); these two are illconceived, too alike (on the other hand, also comma and full stop are alike...)
-0x1B1A	0x066C	#	ARABIC THOUSANDS SEPARATOR (looks very much like an ordinary comma; should it look more like inverted or turned comma?)
+##0x1B19	0x066B	#	ARABIC DECIMAL SEPARATOR (comma-like); these two are illconceived, too alike (on the other hand, also comma and full stop are alike...)
+##0x1B1A	0x066C	#	ARABIC THOUSANDS SEPARATOR (looks very much like an ordinary comma; should it look more like reversed or turned comma?)
 #0x1B1B	SINGLE SHIFT THREE (no mapping by itself, see also @missing above)
 0x1B1B00	0x009B 0x0031 0x006D	#	CSI 1m, medium bold (CSI 1:700m, OpenType weight 700)
 0x1B1B01	0x009B 0x0032 0x0032 0x006D	#	CSI 22m, normal weight (CSI 1:400, OpenType weight 400)
@@ -200,7 +200,7 @@
 0x1B23	0x06F7	#	EXTENDED ARABIC-INDIC DIGIT SEVEN
 0x1B24	0x06F8	#	EXTENDED ARABIC-INDIC DIGIT EIGHT
 0x1B25	0x06F9	#	EXTENDED ARABIC-INDIC DIGIT NINE
-0x1B26	0x06D4	#	ARABIC FULL STOP ((Urdu)) (looks like a hyphen)
+0x1B26	0x0690	#	ARABIC LETTER DAL WITH FOUR DOTS ABOVE
 #0x	 			#	arabic wavy hamza above
 0x1B27	0x065F	#	ARABIC WAVY HAMZA BELOW
 0x1B28	0x007B	#	LEFT CURLY BRACKET
@@ -254,11 +254,11 @@
 0x1B58	0x0058	#	LATIN CAPITAL LETTER X
 0x1B59	0x0059	#	LATIN CAPITAL LETTER Y
 0x1B5A	0x005A	#	LATIN CAPITAL LETTER Z
-0x1B5B	0x061B	#	ARABIC SEMICOLON (an unfortunate copy of U+2E35 TURNED SEMICOLON)
-0x1B5C	0x061F	#	ARABIC QUESTION MARK (an unfortunate copy of U+2E2E REVERSED QUESTION MARK)
-0x1B5D	0x2E35	#	TURNED SEMICOLON
-0x1B5E	0x2E2E	#	REVERSED QUESTION MARK
-0x1B5F	0x0690	#	ARABIC LETTER DAL WITH FOUR DOTS ABOVE
+0x1B5B	0x060C	#	ARABIC COMMA   Note: use TURNED COMMA instead
+0x1B5C	0x061B	#	ARABIC SEMICOLON   Note: use TURNED SEMICOLON instead
+0x1B5D	0x061F	#	ARABIC QUESTION MARK   Note: use REVERSED QUESTION MARK instead
+0x1B5E	0x0640	#	ARABIC TATWEEL (treat as letter, not punctuation)
+0x1B5F	0x06D4	#	ARABIC FULL STOP ((Urdu)) (looks like a low short hyphen) (treat as phrase ending punctuation in the modified bidi algoritnm)
 0x1B60	0x00BC	#	VULGAR FRACTION ONE QUARTER
 0x1B61	0x00BD	#	VULGAR FRACTION ONE HALF
 0x1B62	0x00BE	#	VULGAR FRACTION THREE QUARTERS
@@ -386,14 +386,14 @@
 0x78	0x0078	#	LATIN SMALL LETTER X
 0x79	0x0079	#	LATIN SMALL LETTER Y
 0x7A	0x007A	#	LATIN SMALL LETTER Z
-0x7B	0x060C	#	ARABIC COMMA (an unfortunate copy of U+2E32 TURNED COMMA)
-0x7C	0x2E32	#	TURNED COMMA
-0x7D	0x0640	#	ARABIC TATWEEL
-### While zero-width, these should have visible glyphs; like a narrow bar with a ‘flag’ indicating direction.
-0x7E	0x200E	#	LEFT-TO-RIGHT MARK	(in particular for: to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no mix of spacing LTR and RTL chars in the line)
-0x7F	0x200F	#	RIGHT-TO-LEFT MARK	(in particular for: to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no mix of spacing LTR and RTL chars in the line)
-### Bidi AL to be handled as bidi R, except arabic punctuation which is to be handled as ON; 
-### all bidi EN and AN to be handled as L; all ET, ES, CS to be handled as ON for SMS/CBS.
-### 'Paragraph direction' is always LTR for SMS/CBS. There are no nestable bidi controls in SMS/CBS.
-### Bidi mirroring applies; however, bidi mirroring does not apply to arrows, even though arrows most often
-### refer to the adjacent text components, and not external directions; it is up to the author to mirror arrows.
+0x7B	0x2E32	#	TURNED COMMA   Note: use TURNED COMMA instead of ARABIC COMMA (an unfortunate (AL) copy of U+2E32 TURNED COMMA)
+0x7C	0x2E35	#	TURNED SEMICOLON   Note: use TURNED SEMICOLON instead of ARABIC SEMICOLON (an unfortunate (AL) copy of U+2E35 TURNED SEMICOLON)
+0x7D	0x2E41	#	REVERSED COMMA
+0x7E	0x204F	#	REVERSED SEMICOLON
+0x7F	0x2E2E	#	REVERSED QUESTION MARK   Note: use REVERSED QUESTION MARK instead of ARABIC QUESTION MARK (an unfortunate (AL) copy of U+2E2E REVERSED QUESTION MARK)
+
+### Bidi AL must be handled as bidi R, except arabic punctuation which must to be handled as bidi ON; 
+### all bidi EN and AN must be handled as L; all ET, ES, CS must be handled as bidi ON for SMS/CBS.
+### Bidi mirroring applies, but *only* via bidi_mirroring.txt; not those that mirror only via font.
+### However, bidi mirroring does not apply to arrows, despite that arrows most often refer to
+### adjacent text components, not external directions; it is up to the author to mirror arrows.

@@ -249,11 +249,9 @@
 0x1B58	0x0058	#	LATIN CAPITAL LETTER X
 0x1B59	0x0059	#	LATIN CAPITAL LETTER Y
 0x1B5A	0x005A	#	LATIN CAPITAL LETTER Z
-0x1B5B	0x2E35	#	TURNED SEMICOLON
-0x1B5C	0x2E2E	#	REVERSED QUESTION MARK
-0x1B5D	0x204F	#	REVERSED SEMICOLON
-0x1B5E	0x05BF	#	HEBREW POINT RAFE ('softener', e.g. 'b' -> 'v', ...)
-0x1B5F	0xFB1E	#	HEBREW POINT JUDEO-SPANISH VARIKA ('softener', e.g. 'b' -> 'v', ...)
+0x1B5B	0x05BF	#	HEBREW POINT RAFE ('softener', e.g. 'b' -> 'v', ...)
+0x1B5C	0xFB1E	#	HEBREW POINT JUDEO-SPANISH VARIKA ('softener', e.g. 'b' -> 'v', ...)
+0x1B5E	0x05BE	#	HEBREW PUNCTUATION MAQAF (Hebrew hyphen, looks like hyphen... though higher up)
 0x1B60	0x00BC	#	VULGAR FRACTION ONE QUARTER
 0x1B61	0x00BD	#	VULGAR FRACTION ONE HALF
 0x1B62	0x00BE	#	VULGAR FRACTION THREE QUARTERS
@@ -369,14 +367,14 @@
 0x78	0x0078	#	LATIN SMALL LETTER X
 0x79	0x0079	#	LATIN SMALL LETTER Y
 0x7A	0x007A	#	LATIN SMALL LETTER Z
-0x7B	0x2E41	#	REVERSED COMMA
-0x7C	0x2E32	#	TURNED COMMA
-0x7D	0x05BE	#	HEBREW PUNCTUATION MAQAF (Hebrew hyphen, looks like hyphen... though higher up)
-### While zero-width, these should have visible glyphs; like a narrow bar with a ‘flag’ indicating direction.
-0x7E	0x200E	#	LEFT-TO-RIGHT MARK	(in particular for: to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no RTL char in the line)
-0x7F	0x200F	#	RIGHT-TO-LEFT MARK	(in particular for: to 'force' the desired directionality of a 'bidi neautral' like comma, full stop, quote mark, etc. in case of directionality change around it; 0xFFFD if no RTL char in the line)
-### Bidi AL to be handled as bidi R, except arabic punctuation which is to be handled as ON; 
-### all bidi EN and AN to be handled as L; all ET, ES, CS to be handled as ON for SMS/CBS.
-### 'Paragraph direction' is always LTR for SMS/CBS. There are no nestable bidi controls in SMS/CBS.
-### Bidi mirroring applies; however, bidi mirroring does not apply to arrows, even though arrows most often
-### refer to the adjacent text components, and not external directions; it is up to the author to mirror arrows.
+0x7B	0x2E32	#	TURNED COMMA
+0x7C	0x2E35	#	TURNED SEMICOLON
+0x7D	0x2E41	#	REVERSED COMMA
+0x7E	0x204F	#	REVERSED SEMICOLON
+0x7F	0x2E2E	#	REVERSED QUESTION MARK
+
+### Bidi AL must be handled as bidi R, except arabic punctuation which must to be handled as bidi ON; 
+### all bidi EN and AN must be handled as L; all ET, ES, CS must be handled as bidi ON for SMS/CBS.
+### Bidi mirroring applies, but *only* via bidi_mirroring.txt; not those that mirror only via font.
+### However, bidi mirroring does not apply to arrows, despite that arrows most often refer to
+### adjacent text components, not external directions; it is up to the author to mirror arrows.
